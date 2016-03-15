@@ -149,6 +149,126 @@ player.load("PROXY_ID", function(err) {
 
 ---
 
+### <a id="Player_loadUrl"></a>`Player.prototype.loadUrl(url, onDone)`
+Load file or stream into the player.
+#### Arguments
+1. `url` *(String)*: url of the file/stream to open.
+2. `onDone` *(Function)*: callback function to execute when the video is loaded, takes one argument `error`.
+
+#### Example
+
+```js
+player.loadUrl("http://some.host.com/path/something.mpd", function(err) {
+    if (!err) {
+        console.log("everything loaded just fine");
+    } else {
+        console.error(err);
+    }
+});
+```
+
+---
+
+### <a id="Player_loadAudioProxy"></a>`Player.prototype.loadAudioProxy(serverUrl, proxyId, [fileName])`
+Load audio proxy to the current video proxy. Use in `player.load` callback.
+#### Arguments
+1. `serverUrl` *(String)*: the url of audioproxy server
+2. `proxyId` *(String)*: ID of the audioproxy
+3. `fileName` *(String)*: optional display name to show
+
+#### Example
+```js
+player.load("PROXY_ID", function (err) {
+    if (!err) {
+        player.loadAudioProxy("SERVER_URL", "AUDIOPROXY_ID", 'FILENAME');
+    }
+});
+```
+
+---
+
+### <a id="Player_loadAudioTrack"></a>`Player.prototype.loadAudioTrack(url, [fileName])`
+Add audio file as a new audio track. Use in `player.load` callback.
+#### Arguments
+1. `url` *(String)*: the url of audio file
+2. `fileName` *(String)*: optional display name to show
+
+#### Example
+```js
+player.load("PROXY_ID", function (err) {
+    if (!err) {
+        player.loadAudioTrack("http://some.host.com/sometrack.m4a", 'FILENAME');
+    }
+});
+```
+
+---
+
+### <a id="Player_close"></a>`Player.prototype.close()`
+Close the video and clear player view.
+
+---
+
+### <a id="Player_addAudioTrack"></a>`Player.prototype.addAudioTrack(displayName, channelNames)`
+Add audio track stub. Real audio stream can be associated with this stub later using [`setAudioTrackUrl`](#Player_setAudioTrackUrl).
+Random id will be generated for this track.
+Use in `player.load` callback.
+#### Arguments
+1. `displayName` *(String)*: display name of the track
+2. `channelNames` *(Array)*: display names of audio channels in this track
+String displayName, Array<String> channelNames
+
+#### Example
+```js
+player.load("PROXY_ID", function (err) {
+    if (!err) {
+        player.loadAudioTrack("FILENAME", ["Left", "Right"]);
+    }
+});
+```
+
+---
+
+### <a id="Player_addAudioTrackWithId"></a>`Player.prototype.addAudioTrackWithId(id, displayName, channelNames)`
+Add audio track stub with id=`id`. Real audio stream can be associated with this stub later using [`setAudioTrackUrl`](#Player_setAudioTrackUrl).
+Use in `player.load` callback.
+#### Arguments
+1. `id` *(String)*: id of the track
+2. `displayName` *(String)*: display name of the track
+3. `channelNames` *(Array)*: display names of audio channels in this track
+String displayName, Array<String> channelNames
+
+#### Example
+```js
+player.load("PROXY_ID", function (err) {
+    if (!err) {
+        player.loadAudioTrackWithId("0128749164813674", "FILENAME", ["Left", "Right"]);
+    }
+});
+```
+
+---
+
+### <a id="Player_addAudioTrackWithId"></a>`Player.prototype.addAudioTrackWithId(id, displayName, channelNames)`
+Add audio track stub with id=`id`. Real audio stream can be associated with this stub later using [`setAudioTrackUrl`](#Player_setAudioTrackUrl).
+Use in `player.load` callback.
+#### Arguments
+1. `id` *(String)*: id of the track
+2. `displayName` *(String)*: display name of the track
+3. `channelNames` *(Array)*: display names of audio channels in this track
+String displayName, Array<String> channelNames
+
+#### Example
+```js
+player.load("PROXY_ID", function (err) {
+    if (!err) {
+        player.loadAudioTrackWithId("0128749164813674", "FILENAME", ["Left", "Right"]);
+    }
+});
+```
+
+---
+
 ### <a id="Player_play"></a>`Player.prototype.play()`
 Start playback at 1x speed.
 
@@ -315,29 +435,6 @@ Is player playing or paused (true/false).
 
 #### Returns
 *(Boolean)* : `true` - for playing, `false` otherwise;
-
----
-
-### <a id="Player_close"></a>`Player.prototype.close()`
-Close the video and clear player view.
-
----
-
-### <a id="Player_loadAudioProxy"></a>`Player.prototype.loadAudioProxy(serverUrl, proxyId, [fileName])`
-Load audio proxy to the current video proxy. Use in `player.load` callback.
-#### Arguments
-1. `serverUrl` *(String)*: the url of audioproxy server
-2. `proxyId` *(String)*: ID of the audioproxy
-3. `fileName` *(String)*: optional display name to show
-
-#### Example
-```js
-player.load("PROXY_ID", function (err) {
-    if (!err) {
-        player.loadAudioProxy("SERVER_URL", "AUDIOPROXY_ID", 'FILENAME');
-    }
-});
-```
 
 ---
 
