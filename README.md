@@ -19,8 +19,7 @@
       var proxyId = "merm2";
       var options = {
           serverUrl: window.location.origin,
-          hotkeys: true,
-          plugins: ["filmstrip"]
+          hotkeys: true
       };
       var player = new VG.Player(playerContainer, options);
       VG.VGThemeInit.init();
@@ -79,8 +78,6 @@ Constructs new Player object.
 Options:
 - hotkeys: true/false - enable standard Player hotkeys.
 - serverUrl: URL - back-end URL
-- search: true/false - show search field under captions track
-- plugins: ['filmstrip', 'waveform', 'selections'] - an array of available plugins
 
 #### Example
 
@@ -89,9 +86,7 @@ The follow example shows the basic usage of a Player.
 ```js
     var container = document.getElementById("playerContainer");
     var options = {hotkeys: true,
-                   search: true,
-                   serverUrl: "http://some.server.com:4242/",
-                   plugins: ['filmstrip', 'waveform', 'selections']}
+                   serverUrl: "http://some.server.com:4242/"}
     var player = new Player(container, options);
 ```
 
