@@ -33,41 +33,76 @@
 
 ```
 
-# `Player` class #
+# <a id="Player"></a>`Player` class #
 
 ## `Player Constructor` ##
-- [`constructor`](#player)
+- [`constructor`](#Player_constructor)
 
 ## `Player Instance Methods` ##
 
-### Playback Commands
-- [`play`](#playerPlay)
-- [`pause`](#playerPause)
-- [`togglePlay`](#playerTogglePlay)
-- [`setVolume`](#playerSetVolume)
-- [`getVolume`](#playerGetVolume)
-- [`seek`](#playerSeek)
-- [`seekToFrame`](#playerSeekToFrame)
-- [`seekToSec`](#playerSeekToSec)
-- [`enterFullscreen`](#playerEnterFullscreen)
-- [`exitFullscreen`](#playerExitFullscreen)
-- [`loadAudioProxy`](#playerLoadAudioProxy)
-- [`load`](#playerLoad)
-- [`close`](#playerClose)
-- [`playAtRate`](#playerPlayAtRate)
-- [`setRange`](#playerSetRange)
-- [`cancelRange`](#playerCancelRange)
-- [`setLoop`](#playerSetLoop)
+### Initialization Methods
 
-### Player Status
-- [`isPlaying`](#playerIsPlaying)
-- [`getCurrentTapeTimecode`](#playerGetCurrentTapeTimecode)
-- [`getCurrentFrame`](#playerGetCurrentFrame)
-- [`getCurrentStandardTimecode`](#playerGetCurrentStandardTimecode)
+- [`load`](#Player_load)
+- [`loadUrl`](#Player_loadUrl)
+- [`loadAudioProxy`](#Player_loadAudioProxy)
+- [`loadAudioTrack`](#Player_loadAudioTrack)
+- [`close`](#Player_close)
+- [`addAudioTrack`](#Player_addAudioTrack)
+- [`addAudioTrackWithId`](#Player_addAudioTrackWithId)
+- [`audioAddHandler`](#Player_audioAddHandler)
+- [`setAudioTrackUrl`](#Player_setAudioTrackUrl)
+- [`getAudioTrack`](#Player_getAudioTrack)
+- [`addCaptions`](#Player_addCaptions)
+- [`addCaptionsHandler`](#Player_addCaptionsHandler)
+- [`captionsError`](#Player_captionsError)
+- [`disableHotKeys`](#Player_disableHotKeys)
+- [`enableHotKeys`](#Player_enableHotKeys)
+- [`setStartTapeTimecode`](#Player_setStartTapeTimecode)
+
+### Playback Control Methods
+
+- [`play`](#Player_play)
+- [`playAtRate`](#Player_playAtRate)
+- [`playFaster`](#Player_faster)
+- [`playFasterBackwards`](#Player_fasterBackwards)
+- [`pause`](#Player_pause)
+- [`togglePlay`](#Player_togglePlay)
+- [`setVolume`](#Player_setVolume)
+- [`getVolume`](#Player_getVolume)
+- [`seek`](#Player_seek)
+- [`seekToFrame`](#Player_seekToFrame)
+- [`seekToSec`](#Player_seekToSec)
+- [`nextFrame`](#Player_nextFrame)
+- [`previousFrame`](#Player_previousFrame)
+- [`nextSec`](#Player_nextSec)
+- [`previousSec`](#Player_previousSec)
+- [`setCurrentAudioTrack`](#Player_setCurrentAudioTrack)
+- [`setRange`](#Player_setRange)
+- [`cancelRange`](#Player_cancelRange)
+- [`hasRange`](#Player_hasRange)
+- [`setLoop`](#Player_setLoop)
+- [`enterFullscreen`](#Player_enterFullscreen)
+- [`exitFullscreen`](#Player_exitFullscreen)
+- [`muteAudioTrack`](#Player_muteAudioTrack)
+- [`setVideoQuality`](#Player_setVideoQuality)
+
+### Player Status Methods
+
+- [`isPlaying`](#Player_isPlaying)
+- [`getCurrentTime`](#Player_getCurrentTime)
+- [`getCurrentTimeValue`](#Player_getCurrentTimeValue)
+- [`getCurrentTapeTimecode`](#Player_getCurrentTapeTimecode)
+- [`getCurrentFrame`](#Player_getCurrentFrame)
+- [`getCurrentStandardTimecode`](#Player_getCurrentStandardTimecode)
+- [`getTimeSample`](#Player_getTimeSample)
+- [`getDurationSec`](#Player_getDurationSec)
+- [`getSeekableDurationSec`](#Player_getSeekableDurationSec)
+- [`getTimeline`](#Player_getTimeline)
+- [`isAudioMutable`](#Player_isAudioMutable)
 
 
 ## _Player Constructor_ ##
-### <a id="player"></a>`Player()`
+### <a id="Player_constructor"></a>`Player()`
 Constructs new Player object.
 
 
@@ -94,7 +129,7 @@ The follow example shows the basic usage of a Player.
 
 ## _Player Instance Methods_ ##
 
-### <a id="playerLoad"></a>`Player.prototype.load(proxyIdOrURL, onDone)`
+### <a id="Player_load"></a>`Player.prototype.load(proxyIdOrURL, onDone)`
 Load proxy or file or stream into the player.
 #### Arguments
 1. `proxyIdOrURL` *(String)*: ID of the proxy or URL of the file/stream to open.
@@ -114,22 +149,22 @@ player.load("PROXY_ID", function(err) {
 
 ---
 
-### <a id="playerPlay"></a>`Player.prototype.play()`
+### <a id="Player_play"></a>`Player.prototype.play()`
 Start playback at 1x speed.
 
 ---
 
-### <a id="playerPause"></a>`Player.prototype.pause()`
+### <a id="Player_pause"></a>`Player.prototype.pause()`
 Pause the player.
 
 ---
 
-### <a id="playerTogglePlay"></a>`Player.prototype.togglePlay()`
+### <a id="Player_togglePlay"></a>`Player.prototype.togglePlay()`
 Either start or pause playback depending on the current play state.
 
 ---
 
-### <a id="playerSetRange"></a>`Player.prototype.setRange(fromTime, toTime, loop)`
+### <a id="Player_setRange"></a>`Player.prototype.setRange(fromTime, toTime, loop)`
 Set playback range and optionally enter loop mode. Times can be in any format: tape timecode, standard timecode, frame number.
 
 #### Arguments
@@ -146,12 +181,12 @@ player.setRange(10000, 10256, true);
 
 ---
 
-### <a id="playerCancelRange"></a>`Player.prototype.cancelRange()`
+### <a id="Player_cancelRange"></a>`Player.prototype.cancelRange()`
 Cancel range. Resets range start/end to the beginning and end of entire video respectively.
 
 ---
 
-### <a id="playerSetLoop"></a>`Player.prototype.setLoop(loop)`
+### <a id="Player_setLoop"></a>`Player.prototype.setLoop(loop)`
 Switch between loop/continuous playback modes. In loop mode playback loops within the range previously set by setRange() method.
 
 #### Arguments
@@ -160,7 +195,7 @@ Switch between loop/continuous playback modes. In loop mode playback loops withi
 
 ---
 
-### <a id="playerSeek"></a>`Player.prototype.seek(time)`
+### <a id="Player_seek"></a>`Player.prototype.seek(time)`
 Jump to a specific frame or time.
 Time can be tape or standard timecode or frame number
 #### Arguments
@@ -176,7 +211,7 @@ player.seek(123456); //frame number
 
 ---
 
-### <a id="playerSeekToFrame"></a>`Player.prototype.seekToFrame(frameNumber)`
+### <a id="Player_seekToFrame"></a>`Player.prototype.seekToFrame(frameNumber)`
 Jump to a specific frame.
 #### Arguments
 1. `frameNumber` *(Integer)*: frame number
@@ -189,7 +224,7 @@ player.seek(123456);
 
 ---
 
-### <a id="playerSeekToSec"></a>`Player.prototype.seekToSec(time)`
+### <a id="Player_seekToSec"></a>`Player.prototype.seekToSec(time)`
 Jump to a specific time.
 #### Arguments
 1. `time` *(Number)*: time in seconds
@@ -202,7 +237,7 @@ player.seek(300.043);
 
 ---
 
-### <a id="playerGetCurrentTapeTimecode"></a>`Player.prototype.getCurrentTapeTimecode()`
+### <a id="Player_getCurrentTapeTimecode"></a>`Player.prototype.getCurrentTapeTimecode()`
 Get current player position as tape timecode.
 
 #### Returns
@@ -217,7 +252,7 @@ player.getCurrentTapeTimecode();
 
 ---
 
-### <a id="playerGetCurrentFrame"></a>`Player.prototype.getCurrentFrame()`
+### <a id="Player_getCurrentFrame"></a>`Player.prototype.getCurrentFrame()`
 Get current player position as frame number.
 
 #### Returns
@@ -232,7 +267,7 @@ player.getCurrentFrame()
 
 ---
 
-### <a id="playerGetCurrentStandardTimecode"></a>`Player.prototype.getCurrentStandardTimecode()`
+### <a id="Player_getCurrentStandardTimecode"></a>`Player.prototype.getCurrentStandardTimecode()`
 Get current player position as standard timecode.
 
 #### Returns
@@ -250,17 +285,17 @@ player.getCurrentStandardTimecode();
 ---
 
 
-### <a id="playerEnterFullscreen"></a>`Player.prototype.enterFullscreen()`
+### <a id="Player_enterFullscreen"></a>`Player.prototype.enterFullscreen()`
 Enter fullscreen mode.
 
 ---
 
-### <a id="playerExitFullscreen"></a>`Player.prototype.exitFullscreen()`
+### <a id="Player_exitFullscreen"></a>`Player.prototype.exitFullscreen()`
 Exit fullscreen mode.
 
 ---
 
-### <a id="playerPlayAtRate"></a>`Player.prototype.playAtRate(rate)`
+### <a id="Player_playAtRate"></a>`Player.prototype.playAtRate(rate)`
 Fast forward/rewind.
 #### Arguments
 1. `rate` *(Integer)*: playback rate, possible values: -8, -4, -2, -1, 1, 2, 3, 4, 8. The default playback speed is 1.
@@ -275,7 +310,7 @@ player.playAtRate(-2); //play backwards at 2x speed
 
 ---
 
-### <a id="playerIsPlaying"></a>`Player.prototype.isPlaying()`
+### <a id="Player_isPlaying"></a>`Player.prototype.isPlaying()`
 Is player playing or paused (true/false).
 
 #### Returns
@@ -283,12 +318,12 @@ Is player playing or paused (true/false).
 
 ---
 
-### <a id="playerClose"></a>`Player.prototype.close()`
+### <a id="Player_close"></a>`Player.prototype.close()`
 Close the video and clear player view.
 
 ---
 
-### <a id="playerLoadAudioProxy"></a>`Player.prototype.loadAudioProxy(serverUrl, proxyId, [fileName])`
+### <a id="Player_loadAudioProxy"></a>`Player.prototype.loadAudioProxy(serverUrl, proxyId, [fileName])`
 Load audio proxy to the current video proxy. Use in `player.load` callback.
 #### Arguments
 1. `serverUrl` *(String)*: the url of audioproxy server
@@ -306,14 +341,56 @@ player.load("PROXY_ID", function (err) {
 
 ---
 
-### <a id="playerSetVolume"></a>`Player.prototype.setVolume(val)`
+### <a id="Player_setVolume"></a>`Player.prototype.setVolume(val)`
 Set the volume of the player
 #### Arguments
 1. `val` *(Number)*: Number in range from 0 to 1 - new player volume.
 
 ---
 
-### <a id="playerGetVolume"></a>`Player.prototype.getVolume()`
+### <a id="Player_getVolume"></a>`Player.prototype.getVolume()`
 Get current player volume
 #### Returns
 *(Number)*: Number in range from 0 to 1 - current volume.
+
+* * *
+
+# `PlayerAudioTrack` class #
+
+## `PlayerAudioTrack Instance Methods` ##
+
+- [`getChannels`](#PlayerAudioTrack_getChannels)
+- [`id`](#PlayerAudioTrack_id)
+- [`isMuted`](#PlayerAudioTrack_isMuted)
+
+## _PlayerAudioTrack Instance Methods_ ##
+
+* * *
+
+# `TapeTimecode` class #
+
+## `TapeTimecode Class Methods` ##
+
+- [`isTimecode`](#TapeTimecode_isTimecode)
+- [`parseTimecode`](#TapeTimecode_parseTimecode)
+
+## `TapeTimecode Instance Methods` ##
+
+- [`getFrameByTimecode`](#TapeTimecode_getFrameByTimecode)
+- [`getTapeFps`](#TapeTimecode_getTapeFps)
+- [`getTimecodedDuration`](#TapeTimecode_getTimecodedDuration)
+- [`isDropFrame`](#TapeTimecode_isDropFrame)
+
+## _TapeTimecode Class Methods_ ##
+
+## _TapeTimecode Instance Methods_ ##
+
+* * *
+
+# `Timeline` class #
+
+## `Timeline Instance Methods` ##
+
+- [`getFrameByTimecode`](Timeline_getFrameByTimecode)
+
+## _Timeline Instance Methods_ ##
