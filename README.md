@@ -76,6 +76,7 @@
 - [`previousFrame`](#Player_previousFrame)
 - [`nextSec`](#Player_nextSec)
 - [`previousSec`](#Player_previousSec)
+- [`getCurrentAudioTrack`](#Player_getCurrentAudioTrack)
 - [`setCurrentAudioTrack`](#Player_setCurrentAudioTrack)
 - [`setRange`](#Player_setRange)
 - [`cancelRange`](#Player_cancelRange)
@@ -535,6 +536,17 @@ player.previousSec(4.5);
 
 ---
 
+### <a id="Player_getCurrentAudioTrack"></a>`Player.prototype.getCurrentAudioTrack()`
+Get current audio track.
+#### Returns
+*(PlayerAudioTrack)*: current audio track. See [`PlayerAudioTrack`](#PlayerAudioTrack)
+#### Example
+```js
+var track = player.getCurrentAudioTrack();
+```
+
+---
+
 ### <a id="Player_setCurrentAudioTrack"></a>`Player.prototype.setCurrentAudioTrack(trackId)`
 Set current audio track.
 #### Arguments
@@ -768,11 +780,50 @@ Returns true if individual audio channels can be muted.
 
 ## `PlayerAudioTrack Instance Methods` ##
 
-- [`getChannels`](#PlayerAudioTrack_getChannels)
 - [`id`](#PlayerAudioTrack_id)
+- [`getChannels`](#PlayerAudioTrack_getChannels)
 - [`isMuted`](#PlayerAudioTrack_isMuted)
 
 ## _PlayerAudioTrack Instance Methods_ ##
+
+### <a id="PlayerAudioTrack_id"></a>`PlayerAudioTrack.prototype.id()`
+Get track id.
+
+#### Returns
+*(String)*: track id
+
+---
+
+### <a id="PlayerAudioTrack_getChannels"></a>`PlayerAudioTrack.prototype.getChannels()`
+Get audio track channels.
+
+#### Returns
+*(Array)*: array of channel info objects
+
+#### Example
+
+```js
+player.getCurrentAudioTrack().getChannels();
+// => [{label: "FrontLeft", muted: false}, {label: "FrontRight", muted: false}]
+```
+
+---
+
+### <a id="PlayerAudioTrack_isMuted"></a>`PlayerAudioTrack.prototype.isMuted()`
+Returns true if every channel in the track is muted.
+
+#### Returns
+*(Boolean)*: `true` - every channel is muted, `false` - otherwise
+
+* * *
+
+# `Timeline` class #
+
+## `Timeline Instance Methods` ##
+
+- [`getFrameByTimecode`](Timeline_getFrameByTimecode)
+
+## _Timeline Instance Methods_ ##
 
 * * *
 
@@ -793,13 +844,3 @@ Returns true if individual audio channels can be muted.
 ## _TapeTimecode Class Methods_ ##
 
 ## _TapeTimecode Instance Methods_ ##
-
-* * *
-
-# `Timeline` class #
-
-## `Timeline Instance Methods` ##
-
-- [`getFrameByTimecode`](Timeline_getFrameByTimecode)
-
-## _Timeline Instance Methods_ ##
