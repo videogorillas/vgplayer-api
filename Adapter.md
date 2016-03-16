@@ -44,10 +44,12 @@ POST /api/1/media
 Content-Type:application/json
 
 {
-  "url": "https://www.dropbox.com/s/sdqg1a03vo2hggl/11043435_10152889047648640_3006656993036528196_o.jpg?dl=1",
+  "url": "http://server.com/path/to/video.mp4",
   "commands": [ "nocache", "makehls1", "vgproxy", "makedash" ],
   "commandParams": {
    "makedash": {"watermarkText": "hello world"}
+   "vgproxy": {"watermarkText": "hello world"}
+   "makehls1": {"watermarkText": "hello world"}
   }
 }
 ```
@@ -57,9 +59,14 @@ Response
 {
   "type": "Media",
   "id": "m4",
-  "url": "https://www.dropbox.com/s/sdqg1a03vo2hggl/11043435_10152889047648640_3006656993036528196_o.jpg?dl=1",
+  "url": "http://server.com/path/to/video.mp4",
   "hasThumbnail": false,
-  "commands": [ "nocache", "makehls1", "vgproxy", "makedash" ]
+  "commands": [ "nocache", "makehls1", "vgproxy", "makedash" ],
+  "commandParams": {
+   "makedash": {"watermarkText": "hello world"}
+   "vgproxy": {"watermarkText": "hello world"}
+   "makehls1": {"watermarkText": "hello world"}
+  }
 }
 ```
 
@@ -125,7 +132,7 @@ Response
 {
   "type": "Media",
   "id": "m4",
-  "url": "https://www.dropbox.com/s/sdqg1a03vo2hggl/11043435_10152889047648640_3006656993036528196_o.jpg?dl=1",
+  "url": "http://server.com/path/to/video.mp4",
   "hasThumbnail": false,
   "commands": [ "nocache", "makehls1", "vgproxy", "makedash" ],
   "commandParams": {"makedash": {"watermarkText": "hello world"}},
