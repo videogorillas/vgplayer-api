@@ -16,14 +16,11 @@
 
     window.onload = function() {
       var playerContainer = document.getElementById("playerContainer");
-      var proxyId = "merm2";
-      var options = {
-          serverUrl: window.location.origin,
-          hotkeys: true
-      };
+      var options = {hotkeys: true};
       var player = new VG.Player(playerContainer, options);
       VG.VGThemeInit.init();
-      player.load(proxyId, function() {
+      
+      player.load("http://server/to/video.mp4", function() {
           console.log("player Loaded");
       });
     };
