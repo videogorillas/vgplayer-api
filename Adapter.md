@@ -110,18 +110,21 @@ Response
   "diffMatch": 0.0,
   "hlsDurationSec": 37,
   "resultUrls": [
-    "http://kote.videogorillas.com:8042/api/1/storage/m2744/v5565/hls.m3u8",
-    "http://kote.videogorillas.com:8042/api/1/storage/m2744/v5565/makehls1_inchunk_cq34114.js",
-    "http://kote.videogorillas.com:8042/api/1/storage/m2744/v5565/hls00003.ts",
-    "http://kote.videogorillas.com:8042/api/1/storage/m2744/v5565/hls00002.ts",
-    "http://kote.videogorillas.com:8042/api/1/storage/m2744/v5565/hls00000.ts",
-    "http://kote.videogorillas.com:8042/api/1/storage/m2744/v5565/hls00001.ts",
-    "http://kote.videogorillas.com:8042/api/1/storage/m2744/v5565/hls00005.ts",
-    "http://kote.videogorillas.com:8042/api/1/storage/m2744/v5565/hls00004.ts",
-    "http://kote.videogorillas.com:8042/api/1/storage/m2744/v5565/hls00006.ts",
-    "http://kote.videogorillas.com:8042/api/1/storage/m2744/v5565/hls00007.ts",
-    "http://kote.videogorillas.com:8042/api/1/storage/m2744/v5565/cq34114.log"
+    "/api/1/storage/m2744/v5565/hls.m3u8",
+    "/api/1/storage/m2744/v5565/makehls1_inchunk_cq34114.js",
+    "/api/1/storage/m2744/v5565/hls00003.ts",
+    "/api/1/storage/m2744/v5565/hls00002.ts",
+    "/api/1/storage/m2744/v5565/hls00000.ts",
+    "/api/1/storage/m2744/v5565/hls00001.ts",
+    "/api/1/storage/m2744/v5565/hls00005.ts",
+    "/api/1/storage/m2744/v5565/hls00004.ts",
+    "/api/1/storage/m2744/v5565/hls00006.ts",
+    "/api/1/storage/m2744/v5565/hls00007.ts",
+    "/api/1/storage/m2744/v5565/cq34114.log"
   ],
   "url": "https://www.dropbox.com/s/sdqg1a03vo2hggl/11043435_10152889047648640_3006656993036528196_o.jpg?dl=1"
 }
 ```
+
+Note: HLS url for player is in **resultUrls** array `/api/1/storage/m2744/v5565/hls.m3u8`
+
