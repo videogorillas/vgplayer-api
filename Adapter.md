@@ -35,23 +35,25 @@ Note: **Media id** is `m4`
 
 # Job Types
 
+"makehls1" - create HLS stream
+
+"makedash" - create DASH stream 
+
+"vgproxy" - create VG pro proxy
+
+"nocache" - fake command to prevent original media download
+
 "download" - download original media and store it in block storage
 
 "downloadProxy" - download original proxy and store it in format for fast proxy creation
 
 "mal9k" - detect objects in video
 
-"makehls1" - create HLS stream
-
-"makedash" - create DASH stream and VG pro proxy (TODO: split into two different job types)
-
 "mediainfo" - run mediainfo command on original media and make the result available via api 
 
 "diff_proxy" - create proxy for differential analysis 
 
 "diff_compare" - compare two proxies and make result json available via api
-
-"nocache" - fake command to prevent original media download
 
 "detectmusic" - detect music in all channels of media and make it available via api 
 
