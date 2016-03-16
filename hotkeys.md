@@ -22,9 +22,9 @@
 
 `j` step backwards by one second
 
-`k-l` next frame
+`k-l` step forward by one frame
 
-`k-j` previous frame
+`k-j` step backwards by one frame
 
 ---
 
