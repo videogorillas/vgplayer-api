@@ -217,7 +217,8 @@ Use in `player.load` callback.
 1. `displayName` *(String)*: display name of the track
 2. `channelNames` *(Array)*: display names of audio channels in this track
 String displayName, Array<String> channelNames
-
+#### Returns
+*(String)*: track id
 #### Example
 ```js
 player.load("PROXY_ID", function (err) {
@@ -237,7 +238,8 @@ Use in `player.load` callback.
 2. `displayName` *(String)*: display name of the track
 3. `channelNames` *(Array)*: display names of audio channels in this track
 String displayName, Array<String> channelNames
-
+#### Returns
+*(String)*: track id
 #### Example
 ```js
 player.load("PROXY_ID", function (err) {
@@ -249,20 +251,122 @@ player.load("PROXY_ID", function (err) {
 
 ---
 
-### <a id="Player_addAudioTrackWithId"></a>`Player.prototype.addAudioTrackWithId(id, displayName, channelNames)`
-Add audio track stub with id=`id`. Real audio stream can be associated with this stub later using [`setAudioTrackUrl`](#Player_setAudioTrackUrl).
-Use in `player.load` callback.
+### <a id="Player_audioAddHandler"></a>`Player.prototype.audioAddHandler(callback)`
+Show "add audio track" button in the player UI. `callback` function is called on click.
+Use in `player.load` callback with `player.loadAudioProxy` or `player.loadAudioTrack` to add new audio track.
 #### Arguments
-1. `id` *(String)*: id of the track
-2. `displayName` *(String)*: display name of the track
-3. `channelNames` *(Array)*: display names of audio channels in this track
-String displayName, Array<String> channelNames
+1. `callback` *(Function)*: event handler
 
 #### Example
 ```js
 player.load("PROXY_ID", function (err) {
     if (!err) {
-        player.loadAudioTrackWithId("0128749164813674", "FILENAME", ["Left", "Right"]);
+        player.audioAddHandler(function (e) {
+            /*any additional code*/
+            player.loadAudioProxy("SERVER_URL", "AUDIOPROXY_ID", "FILENAME");
+        });
+    }
+});
+```
+
+---
+
+### <a id="Player_setAudioTrackUrl"></a>`Player.prototype.setAudioTrackUrl(trackId, url)`
+Set audio stream url in audio track stub. Used with audio track stubs previously created with `player.addAudioTrack`.
+#### Arguments
+1. `trackId` *(String)*: track id
+2. `url` *(String)*: audio stream url
+
+#### Example
+```js
+player.load("PROXY_ID", function (err) {
+    if (!err) {
+        /* create stub on UI indicating that track is being loaded */
+        var trackId = player.addAudioTrack("mytrack", ["Left", "Right"]);
+        /* wait for adapter to transcode the audio and give us trackUrl */
+        player.setAudioTrackUrl(trackId, trackUrl)
+    }
+});
+```
+
+---
+
+### <a id="Player_getAudioTrack"></a>`Player.prototype.getAudioTrack(trackId)`
+Get audio track.
+#### Arguments
+1. `trackId` *(String)*: track id
+#### Returns
+*(PlayerAudioTrack)*: audio track. See [`PlayerAudioTrack`](#PlayerAudioTrack)
+#### Example
+```js
+var track = player.getAudioTrack("my_track_id_123");
+```
+
+---
+
+### <a id="Player_addCaptions"></a>`Player.prototype.addCaptions(captions)`
+Add captions/subtitles track.
+#### Arguments
+1. `captions` *(Subtitles)*: parsed captions
+#### Example
+```js
+player.addCaptions(mySubtitles);
+```
+
+---
+
+### <a id="Player_addCaptionsHandler"></a>`Player.prototype.addCaptionsHandler(callback)`
+Show "add captions track" button in the player UI. `callback` function is called on click.
+Use in `player.load` callback with `player.addCaptions`.
+#### Arguments
+1. `callback` *(Function)*: event handler
+
+#### Example
+```js
+player.load("PROXY_ID", function (err) {
+    if (!err) {
+        player.addCaptionsHandler(function (e) {
+            /*load and parse some captions here*/
+            player.addCaptions(myParsedCaptions);
+        });
+    }
+});
+```
+
+---
+
+### <a id="Player_captionsError"></a>`Player.prototype.captionsError(message)`
+Show error message. Use it to tell the user that captions could not be loaded.
+#### Arguments
+1. `message` *(String)*: error message
+#### Example
+```js
+player.captionsError("Failed to load captions from http://host.com/path/caps01.xml");
+```
+
+---
+
+### <a id="Player_disableHotKeys"></a>`Player.prototype.disableHotKeys()`
+Disable hot keys handling.
+
+---
+
+### <a id="Player_enableHotKeys"></a>`Player.prototype.enableHotKeys()`
+Enable hot keys handling.
+
+---
+
+### <a id="Player_setStartTapeTimecode"></a>`Player.prototype.setStartTapeTimecode(timecode)`
+Set start tape timecode. New timecode overrides start timecode obtained from video stream.
+Use in `player.load` callback.
+#### Arguments
+1. `timecode` *(String)*: start tape timecode
+
+#### Example
+```js
+player.load("PROXY_ID", function (err) {
+    if (!err) {
+        player.setStartTapeTimecode("01:00:00:00");
     }
 });
 ```
@@ -452,7 +556,7 @@ Get current player volume
 
 * * *
 
-# `PlayerAudioTrack` class #
+# <a id="PlayerAudioTrack"></a>`PlayerAudioTrack` class #
 
 ## `PlayerAudioTrack Instance Methods` ##
 
