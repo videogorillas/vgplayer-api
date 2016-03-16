@@ -378,6 +378,45 @@ Start playback at 1x speed.
 
 ---
 
+### <a id="Player_playAtRate"></a>`Player.prototype.playAtRate(rate)`
+Fast forward/rewind.
+#### Arguments
+1. `rate` *(Integer)*: playback rate, possible values: -8, -4, -2, -1, 1, 2, 3, 4, 8.
+#### Example
+```js
+player.playAtRate(2); //play forward at 2x speed
+player.playAtRate(-2); //play backwards at 2x speed
+
+```
+
+---
+
+### <a id="Player_playFaster"></a>`Player.prototype.playFaster()`
+Double the playback rate. If current rate is 0 or negative then play forward at 1x speed.
+#### Example
+
+```js
+player.play(); // play at 1x
+player.playFaster(); //play forward at 2x speed
+player.playFaster(); //play forward at 4x speed
+
+```
+
+---
+
+### <a id="Player_playFasterBackwards"></a>`Player.prototype.playFasterBackwards()`
+Double the backwards playback rate. If current rate is 0 or positive then play backwards at 1x speed.
+#### Example
+
+```js
+player.playAtRate(-1); // play backwards at 1x
+player.playFasterBackwards(); //play backwards at 2x speed
+player.playFasterBackwards(); //play backwards at 4x speed
+
+```
+
+---
+
 ### <a id="Player_pause"></a>`Player.prototype.pause()`
 Pause the player.
 
@@ -388,40 +427,23 @@ Either start or pause playback depending on the current play state.
 
 ---
 
-### <a id="Player_setRange"></a>`Player.prototype.setRange(fromTime, toTime, loop)`
-Set playback range and optionally enter loop mode. Times can be in any format: tape timecode, standard timecode, frame number.
-
+### <a id="Player_setVolume"></a>`Player.prototype.setVolume(val)`
+Set the volume of the player.
 #### Arguments
-1. `fromTime` *(tape timecode / standard timecode / frame number)*: start of the range
-2. `toTime` *(tape timecode / standard timecode / frame number)*: end of the range
-3. `loop` *(Boolean)*: optional, defaults to false. If set to true switches to loop mode
-
-#### Example
-
-```js
-player.setRange("01:00:00:00", "01:13:37:23", true);
-player.setRange(10000, 10256, true);
-```
+1. `val` *(Number)*: Number in range from 0 to 1 - new player volume.
 
 ---
 
-### <a id="Player_cancelRange"></a>`Player.prototype.cancelRange()`
-Cancel range. Resets range start/end to the beginning and end of entire video respectively.
-
----
-
-### <a id="Player_setLoop"></a>`Player.prototype.setLoop(loop)`
-Switch between loop/continuous playback modes. In loop mode playback loops within the range previously set by setRange() method.
-
-#### Arguments
-1. `loop` *(Boolean)*: true for loop, false for continuos playback
-
+### <a id="Player_getVolume"></a>`Player.prototype.getVolume()`
+Get current player volume.
+#### Returns
+*(Number)*: Number in range from 0 to 1 - current volume.
 
 ---
 
 ### <a id="Player_seek"></a>`Player.prototype.seek(time)`
 Jump to a specific frame or time.
-Time can be tape or standard timecode or frame number
+Time can be tape or standard timecode or frame number.
 #### Arguments
 1. `time` *(tape / standard timecode / frame number)*:
 
@@ -457,6 +479,136 @@ Jump to a specific time.
 
 ```js
 player.seek(300.043);
+```
+
+---
+
+### <a id="Player_nextFrame"></a>`Player.prototype.nextFrame(numberOfFrames)`
+Pause the player and jump forward by `numberOfFrames` frames.
+#### Arguments
+1. `numberOfFrames` *(Integer)*: number of frames
+
+#### Example
+
+```js
+player.nextFrame(10);
+```
+
+---
+
+### <a id="Player_previousFrame"></a>`Player.prototype.previousFrame(numberOfFrames)`
+Pause the player and jump backwards by `numberOfFrames` frames.
+#### Arguments
+1. `numberOfFrames` *(Integer)*: number of frames
+
+#### Example
+
+```js
+player.previousFrame(10);
+```
+
+---
+
+### <a id="Player_nextSec"></a>`Player.prototype.nextSec(seconds)`
+Pause the player and jump forward by `seconds` seconds.
+#### Arguments
+1. `seconds` *(Number)*: time step in seconds
+
+#### Example
+
+```js
+player.nextSec(12.45);
+```
+
+---
+
+### <a id="Player_previousSec"></a>`Player.prototype.previousSec(seconds)`
+Pause the player and jump backwards by `seconds` seconds.
+#### Arguments
+1. `seconds` *(Number)*: time step in seconds
+
+#### Example
+
+```js
+player.previousSec(4.5);
+```
+
+---
+
+### <a id="Player_setCurrentAudioTrack"></a>`Player.prototype.setCurrentAudioTrack(trackId)`
+Set current audio track.
+#### Arguments
+1. `trackId` *(String)*: track id
+2. `url` *(String)*: audio stream url
+
+#### Example
+```js
+player.setCurrentAudioTrack("eng_5.1");
+```
+
+---
+
+### <a id="Player_setRange"></a>`Player.prototype.setRange(fromTime, toTime, loop)`
+Set playback range and optionally enter loop mode. Times can be in any format: tape timecode, standard timecode, frame number.
+
+#### Arguments
+1. `fromTime` *(tape timecode / standard timecode / frame number)*: start of the range
+2. `toTime` *(tape timecode / standard timecode / frame number)*: end of the range
+3. `loop` *(Boolean)*: optional, defaults to false. If set to true switches to loop mode
+
+#### Example
+
+```js
+player.setRange("01:00:00:00", "01:13:37:23", true);
+player.setRange(10000, 10256, true);
+```
+
+---
+
+### <a id="Player_cancelRange"></a>`Player.prototype.cancelRange()`
+Cancel range. Resets range start/end to the beginning and end of entire video respectively.
+
+---
+
+### <a id="Player_hasRange"></a>`Player.prototype.hasRange()`
+Tell if player is in range mode.
+#### Returns
+*(Boolean)* : `true` - player is in range mode, `false` player plays the whole stream;
+
+---
+
+### <a id="Player_setLoop"></a>`Player.prototype.setLoop(loop)`
+Switch between loop/continuous playback modes. In loop mode playback loops within the range previously set by setRange() method.
+
+#### Arguments
+1. `loop` *(Boolean)*: true for loop, false for continuos playback
+
+---
+
+### <a id="Player_enterFullscreen"></a>`Player.prototype.enterFullscreen()`
+Enter fullscreen mode.
+
+---
+
+### <a id="Player_exitFullscreen"></a>`Player.prototype.exitFullscreen()`
+Exit fullscreen mode.
+
+---
+
+### <a id="Player_muteAudioTrack"></a>`Player.prototype.muteAudioTrack(trackId)`
+Mute all channels in the audio track.
+#### Arguments
+1. `trackId` *(String)*: track id
+
+---
+
+### <a id="Player_setVideoQuality"></a>`Player.prototype.setVideoQuality(quality)`
+Switch between hi and low resolution video streams. Use constants `Player.FULL_RES` and `Player.LOW_RES`.
+#### Arguments
+1. `quality` *(String)*: quality type
+#### Example
+```js
+player.setVideoQuality(Player.LOW_RES);
 ```
 
 ---
@@ -508,51 +660,11 @@ player.getCurrentStandardTimecode();
 
 ---
 
-
-### <a id="Player_enterFullscreen"></a>`Player.prototype.enterFullscreen()`
-Enter fullscreen mode.
-
----
-
-### <a id="Player_exitFullscreen"></a>`Player.prototype.exitFullscreen()`
-Exit fullscreen mode.
-
----
-
-### <a id="Player_playAtRate"></a>`Player.prototype.playAtRate(rate)`
-Fast forward/rewind.
-#### Arguments
-1. `rate` *(Integer)*: playback rate, possible values: -8, -4, -2, -1, 1, 2, 3, 4, 8. The default playback speed is 1.
-
-#### Example
-
-```js
-player.playAtRate(2); //play forward at 2x speed
-player.playAtRate(-2); //play backwards at 2x speed
-
-```
-
----
-
 ### <a id="Player_isPlaying"></a>`Player.prototype.isPlaying()`
 Is player playing or paused (true/false).
 
 #### Returns
 *(Boolean)* : `true` - for playing, `false` otherwise;
-
----
-
-### <a id="Player_setVolume"></a>`Player.prototype.setVolume(val)`
-Set the volume of the player
-#### Arguments
-1. `val` *(Number)*: Number in range from 0 to 1 - new player volume.
-
----
-
-### <a id="Player_getVolume"></a>`Player.prototype.getVolume()`
-Get current player volume
-#### Returns
-*(Number)*: Number in range from 0 to 1 - current volume.
 
 * * *
 
