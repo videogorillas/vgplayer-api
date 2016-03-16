@@ -61,6 +61,28 @@ Note: **Media id** is `m4`
 
 # Get Media Status
 
+
+```js
+
+var mediaId = "m4242"
+
+var request = new XMLHttpRequest();
+
+request.open('GET', 'http://kote.videogorillas.com:8042/api/1/videos/get/'+mediaId);
+
+request.onreadystatechange = function () {
+  if (this.readyState === 4) {
+    console.log('Status:', this.status);
+    console.log('Headers:', this.getAllResponseHeaders());
+    
+    var media = JSON.parse(this.responseText);
+    
+  }
+};
+
+request.send();
+```
+
 Request
 ```
 GET /api/1/media/get/${MEDIA_ID_HERE}
