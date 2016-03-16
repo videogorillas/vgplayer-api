@@ -5,6 +5,38 @@
 
 You may create your own media recognition tasks using this action. It takes a JSON object containing a media and a collection of commands to perform actions on media.
 
+JavaScript example
+```js
+
+var videoUrl = "http://server.com/path/to/video.mp4";
+var mediaRequest = {
+  'url': videoUrl,
+  "commands": [ "nocache", "makehls1", "vgproxy", "makedash" ],
+  "commandParams": {
+   "makedash": {"watermarkText": "hello world"}
+   "vgproxy": {"watermarkText": "hello world"}
+   "makehls1": {"watermarkText": "hello world"}
+  }
+};
+
+var request = new XMLHttpRequest();
+
+request.open('POST', 'http://kote.videogorillas.com:8042/api/1/media');
+
+request.setRequestHeader('Content-Type', 'application/json');
+
+request.onreadystatechange = function () {
+  if (this.readyState === 4) {
+    console.log('Status:', this.status);
+    console.log('Headers:', this.getAllResponseHeaders());
+    var mediaResponse = JSON.parse(this.responseText);
+    console.log('Media Response:', mediaResponse);
+  }
+};
+
+request.send(JSON.stringify(mediaRequest));
+```
+
 Request
 ```
 POST /api/1/media
@@ -68,7 +100,7 @@ var mediaId = "m4242"
 
 var request = new XMLHttpRequest();
 
-request.open('GET', 'http://kote.videogorillas.com:8042/api/1/videos/get/'+mediaId);
+request.open('GET', 'http://kote.videogorillas.com:8042/api/1/media/get/'+mediaId);
 
 request.onreadystatechange = function () {
   if (this.readyState === 4) {
