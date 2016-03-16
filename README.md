@@ -92,8 +92,8 @@
 - [`getCurrentTime`](#Player_getCurrentTime)
 - [`getCurrentTimeValue`](#Player_getCurrentTimeValue)
 - [`getCurrentTapeTimecode`](#Player_getCurrentTapeTimecode)
-- [`getCurrentFrame`](#Player_getCurrentFrame)
 - [`getCurrentStandardTimecode`](#Player_getCurrentStandardTimecode)
+- [`getCurrentFrame`](#Player_getCurrentFrame)
 - [`getTimeSample`](#Player_getTimeSample)
 - [`getDurationSec`](#Player_getDurationSec)
 - [`getSeekableDurationSec`](#Player_getSeekableDurationSec)
@@ -613,11 +613,49 @@ player.setVideoQuality(Player.LOW_RES);
 
 ---
 
+### <a id="Player_isPlaying"></a>`Player.prototype.isPlaying()`
+Is player playing or paused (true/false).
+
+#### Returns
+*(Boolean)* : `true` - for playing, `false` otherwise;
+
+---
+
+### <a id="Player_getCurrentTime"></a>`Player.prototype.getCurrentTime()`
+Get current player position as time in seconds.
+
+#### Returns
+*(Number)*: time in seconds
+
+#### Example
+
+```js
+player.getCurrentTime()
+// => 230.0234
+```
+
+---
+
+### <a id="Player_getCurrentTimeValue"></a>`Player.prototype.getCurrentTimeValue()`
+Get current player position as time value in video stream's time units.
+
+#### Returns
+*(Integer)*: time value
+
+#### Example
+
+```js
+player.getCurrentTimeValue()
+// => 42042
+```
+
+---
+
 ### <a id="Player_getCurrentTapeTimecode"></a>`Player.prototype.getCurrentTapeTimecode()`
 Get current player position as tape timecode.
 
 #### Returns
-*(String)*: string representation of the current tape timecode.
+*(String)*: string representation of the current position tape timecode.
 
 #### Example
 
@@ -628,26 +666,11 @@ player.getCurrentTapeTimecode();
 
 ---
 
-### <a id="Player_getCurrentFrame"></a>`Player.prototype.getCurrentFrame()`
-Get current player position as frame number.
-
-#### Returns
-*(Integer)*: number of the current frame.
-
-#### Example
-
-```js
-player.getCurrentFrame()
-// => 630
-```
-
----
-
 ### <a id="Player_getCurrentStandardTimecode"></a>`Player.prototype.getCurrentStandardTimecode()`
 Get current player position as standard timecode.
 
 #### Returns
-*(String)*: string representation of the current standard timecode.
+*(String)*: string representation of the current position standard timecode.
 
 #### Example
 
@@ -660,11 +683,84 @@ player.getCurrentStandardTimecode();
 
 ---
 
-### <a id="Player_isPlaying"></a>`Player.prototype.isPlaying()`
-Is player playing or paused (true/false).
+### <a id="Player_getCurrentFrame"></a>`Player.prototype.getCurrentFrame()`
+Get current player position as zero based frame number.
 
 #### Returns
-*(Boolean)* : `true` - for playing, `false` otherwise;
+*(Integer)*: current frame number
+
+#### Example
+
+```js
+player.getCurrentFrame()
+// => 630
+```
+
+---
+
+
+### <a id="Player_getTimeSample"></a>`Player.prototype.getTimeSample()`
+Get current player position as `TimeSample` object containing time value, seconds and frame number.
+
+#### Returns
+*(TimeSample)*: TimeSample instance representing current position
+
+#### Example
+
+```js
+player.getTimeSample()
+// => {tv: 7168, frame: 14, sec: 0.56442}
+```
+
+---
+
+### <a id="Player_getDurationSec"></a>`Player.prototype.getDurationSec()`
+Get timeline duration in seconds. It is equal to video stream duration.
+
+#### Returns
+*(Number)*: duration in seconds
+
+#### Example
+
+```js
+player.getDurationSec()
+// => 230.0234
+```
+
+---
+
+### <a id="Player_getSeekableDurationSec"></a>`Player.prototype.getSeekableDurationSec()`
+Get timeline seekable duration in seconds.
+It is equal to the lesser of video stream duration and current audio track duration.
+Player can seek and play media from the beginning of the stream up to this duration.
+
+#### Returns
+*(Number)*: seekable duration in seconds
+
+#### Example
+
+```js
+player.getDurationSec()
+// => 230.0234
+player.getSeekableDurationSec()
+// => 30
+```
+
+---
+
+### <a id="Player_getTimeline"></a>`Player.prototype.getTimeline()`
+Get [`Timeline`](#Timeline) instance.
+
+#### Returns
+*(Timeline)*: `Timeline` instance
+
+---
+
+### <a id="Player_isAudioMutable"></a>`Player.prototype.isAudioMutable()`
+Returns true if individual audio channels can be muted.
+
+#### Returns
+*(Boolean)* : `true` - individual audio channels can be muted, `false` otherwise;
 
 * * *
 
