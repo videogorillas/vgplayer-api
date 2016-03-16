@@ -13,8 +13,8 @@ var mediaRequest = {
   'url': videoUrl,
   "commands": [ "nocache", "makehls1", "vgproxy", "makedash" ],
   "commandParams": {
-   "makedash": {"watermarkText": "hello world"}
-   "vgproxy": {"watermarkText": "hello world"}
+   "makedash": {"watermarkText": "hello world"},
+   "vgproxy": {"watermarkText": "hello world"},
    "makehls1": {"watermarkText": "hello world"}
   }
 };
@@ -47,8 +47,8 @@ Content-Type:application/json
   "url": "http://server.com/path/to/video.mp4",
   "commands": [ "nocache", "makehls1", "vgproxy", "makedash" ],
   "commandParams": {
-   "makedash": {"watermarkText": "hello world"}
-   "vgproxy": {"watermarkText": "hello world"}
+   "makedash": {"watermarkText": "hello world"},
+   "vgproxy": {"watermarkText": "hello world"},
    "makehls1": {"watermarkText": "hello world"}
   }
 }
@@ -63,8 +63,8 @@ Response
   "hasThumbnail": false,
   "commands": [ "nocache", "makehls1", "vgproxy", "makedash" ],
   "commandParams": {
-   "makedash": {"watermarkText": "hello world"}
-   "vgproxy": {"watermarkText": "hello world"}
+   "makedash": {"watermarkText": "hello world"},
+   "vgproxy": {"watermarkText": "hello world"},
    "makehls1": {"watermarkText": "hello world"}
   }
 }
