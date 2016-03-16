@@ -21,7 +21,7 @@ Content-Type:application/json
 ```
 
 Response
-```
+```json
 {
   "type": "Media",
   "id": "m4",
@@ -65,7 +65,7 @@ GET /api/1/media/get/${MEDIA_ID_HERE}
 ```
 
 Response
-```
+```json
 {
   "type": "Media",
   "id": "m4",
@@ -86,7 +86,6 @@ Request
 ```
 GET /api/1/job/get/${JOB_ID_HERE}
 ```
-
 
 Response
 ```json
