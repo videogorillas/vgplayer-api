@@ -2,7 +2,6 @@
 
 ## `Timeline Instance Methods` ##
 
-- [`aaa`](Adapter.md)
 - [`getTimeScale`](#Timeline_getTimeScale)
 - [`getFrameCount`](#Timeline_getFrameCount)
 - [`getTvBySec`](#Timeline_getTvBySec)
