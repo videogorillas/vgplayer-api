@@ -347,9 +347,10 @@ Use in `player.load` callback.
 Supported event types:
 - `fullscreen` player enters/exits full screen mode. Boolean status is passed to the handler.
 - `timeupdate` playback position changes. `TimeSample` object is passed to the handler.
+
 #### Arguments
 1. `type` *(String)*: event type
-1. `handler` *(Function)*: event handler function
+2. `handler` *(Function)*: event handler function
 #### Example
 ```js
 function onTimeUpdate(ts) {
@@ -365,9 +366,10 @@ player.load("PROXY_ID", function (err) {
 ### <a id="Player_removeEventListener"></a>`Player.prototype.removeEventListener(type, handler)`
 Remove event listener.
 Use in `player.load` callback.
+
 #### Arguments
 1. `type` *(String)*: event type
-1. `handler` *(Function)*: event handler function
+2. `handler` *(Function)*: event handler function
 #### Example
 ```js
 function onTimeUpdate(ts) {
