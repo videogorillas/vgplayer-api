@@ -181,12 +181,15 @@ Close the video and clear player view.
 Add audio track stub. Real audio stream can be associated with this stub later using [`setAudioTrackUrl`](#Player_setAudioTrackUrl).
 Random id will be generated for this track.
 Use in `player.load` callback.
+
 #### Arguments
 1. `displayName` *(String)*: display name of the track
 2. `channelNames` *(Array)*: display names of audio channels in this track
 String displayName, Array<String> channelNames
+
 #### Returns
 *(String)*: track id
+
 #### Example
 ```js
 player.load("PROXY_ID", function (err) {
@@ -206,8 +209,10 @@ Use in `player.load` callback.
 2. `displayName` *(String)*: display name of the track
 3. `channelNames` *(Array)*: display names of audio channels in this track
 String displayName, Array<String> channelNames
+
 #### Returns
 *(String)*: track id
+
 #### Example
 ```js
 player.load("PROXY_ID", function (err) {
@@ -263,8 +268,10 @@ player.load("PROXY_ID", function (err) {
 Get audio track.
 #### Arguments
 1. `trackId` *(String)*: track id
+
 #### Returns
 *(PlayerAudioTrack)*: audio track. See [`PlayerAudioTrack`](PlayerAudioTrack.md)
+
 #### Example
 ```js
 var track = player.getAudioTrack("my_track_id_123");
@@ -276,6 +283,7 @@ var track = player.getAudioTrack("my_track_id_123");
 Add captions/subtitles track.
 #### Arguments
 1. `captions` *(Subtitles)*: parsed captions
+
 #### Example
 ```js
 player.addCaptions(mySubtitles);
@@ -307,6 +315,7 @@ player.load("PROXY_ID", function (err) {
 Show error message. Use it to tell the user that captions could not be loaded.
 #### Arguments
 1. `message` *(String)*: error message
+
 #### Example
 ```js
 player.captionsError("Failed to load captions from http://host.com/path/caps01.xml");
@@ -351,6 +360,7 @@ Supported event types:
 #### Arguments
 1. `type` *(String)*: event type
 2. `handler` *(Function)*: event handler function
+
 #### Example
 ```js
 function onTimeUpdate(ts) {
@@ -370,6 +380,7 @@ Use in `player.load` callback.
 #### Arguments
 1. `type` *(String)*: event type
 2. `handler` *(Function)*: event handler function
+
 #### Example
 ```js
 function onTimeUpdate(ts) {
@@ -393,6 +404,7 @@ Start playback at 1x speed.
 Fast forward/rewind.
 #### Arguments
 1. `rate` *(Integer)*: playback rate, possible values: -8, -4, -2, -1, 1, 2, 3, 4, 8.
+
 #### Example
 ```js
 player.playAtRate(2); //play forward at 2x speed
@@ -404,6 +416,7 @@ player.playAtRate(-2); //play backwards at 2x speed
 
 ### <a id="Player_playFaster"></a>`Player.prototype.playFaster()`
 Double the playback rate. If current rate is 0 or negative then play forward at 1x speed.
+
 #### Example
 
 ```js
@@ -417,6 +430,7 @@ player.playFaster(); //play forward at 4x speed
 
 ### <a id="Player_playFasterBackwards"></a>`Player.prototype.playFasterBackwards()`
 Double the backwards playback rate. If current rate is 0 or positive then play backwards at 1x speed.
+
 #### Example
 
 ```js
@@ -440,6 +454,7 @@ Either start or pause playback depending on the current play state.
 
 ### <a id="Player_setVolume"></a>`Player.prototype.setVolume(val)`
 Set the volume of the player.
+
 #### Arguments
 1. `val` *(Number)*: Number in range from 0 to 1 - new player volume.
 
@@ -447,6 +462,7 @@ Set the volume of the player.
 
 ### <a id="Player_getVolume"></a>`Player.prototype.getVolume()`
 Get current player volume.
+
 #### Returns
 *(Number)*: Number in range from 0 to 1 - current volume.
 
@@ -455,6 +471,7 @@ Get current player volume.
 ### <a id="Player_seek"></a>`Player.prototype.seek(time)`
 Jump to a specific frame or time.
 Time can be tape or standard timecode or frame number.
+
 #### Arguments
 1. `time` *(tape / standard timecode / frame number)*:
 
@@ -548,8 +565,10 @@ player.previousSec(4.5);
 
 ### <a id="Player_getCurrentAudioTrack"></a>`Player.prototype.getCurrentAudioTrack()`
 Get current audio track.
+
 #### Returns
 *(PlayerAudioTrack)*: current audio track. See [`PlayerAudioTrack`](PlayerAudioTrack.md)
+
 #### Example
 ```js
 var track = player.getCurrentAudioTrack();
@@ -559,6 +578,7 @@ var track = player.getCurrentAudioTrack();
 
 ### <a id="Player_setCurrentAudioTrack"></a>`Player.prototype.setCurrentAudioTrack(trackId)`
 Set current audio track.
+
 #### Arguments
 1. `trackId` *(String)*: track id
 2. `url` *(String)*: audio stream url
@@ -594,7 +614,8 @@ Cancel range. Resets range start/end to the beginning and end of entire video re
 
 ### <a id="Player_hasRange"></a>`Player.prototype.hasRange()`
 Tell if player is in range mode.
-#### Returns
+
+### Returns
 *(Boolean)* : `true` - player is in range mode, `false` player plays the whole stream;
 
 ---
@@ -628,6 +649,7 @@ Mute all channels in the audio track.
 Switch between hi and low resolution video streams. Use constants `Player.FULL_RES` and `Player.LOW_RES`.
 #### Arguments
 1. `quality` *(String)*: quality type
+
 #### Example
 ```js
 player.setVideoQuality(Player.LOW_RES);
