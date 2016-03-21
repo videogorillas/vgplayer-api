@@ -23,6 +23,8 @@
 - [`disableHotKeys`](#Player_disableHotKeys)
 - [`enableHotKeys`](#Player_enableHotKeys)
 - [`setStartTapeTimecode`](#Player_setStartTapeTimecode)
+- [`addEventListener`](#Player_addEventListener)
+- [`removeEventListener`](#Player_removeEventListener)
 
 ### Playback Control Methods
 
@@ -334,6 +336,47 @@ player.load("PROXY_ID", function (err) {
     if (!err) {
         player.setStartTapeTimecode("01:00:00:00");
     }
+});
+```
+
+---
+
+### <a id="Player_addEventListener"></a>`Player.prototype.addEventListener(type, handler)`
+Add event listener.
+Use in `player.load` callback.
+Supported event types:
+- `fullscreen` player enters/exits full screen mode. Boolean status is passed to the handler.
+- `timeupdate` playback position changes. `TimeSample` object is passed to the handler.
+#### Arguments
+1. `type` *(String)*: event type
+1. `handler` *(Function)*: event handler function
+#### Example
+```js
+function onTimeUpdate(ts) {
+    console.log(ts.frame, ts.sec);
+}
+player.load("PROXY_ID", function (err) {
+    player.addEventListener("timeupdate", onTimeUpdate);
+});
+```
+
+---
+
+### <a id="Player_removeEventListener"></a>`Player.prototype.removeEventListener(type, handler)`
+Remove event listener.
+Use in `player.load` callback.
+#### Arguments
+1. `type` *(String)*: event type
+1. `handler` *(Function)*: event handler function
+#### Example
+```js
+function onTimeUpdate(ts) {
+    // some code
+}
+player.load("PROXY_ID", function (err) {
+    player.addEventListener("timeupdate", onTimeUpdate);
+    // some code
+    player.removeEventListener("timeupdate", onTimeUpdate);
 });
 ```
 
