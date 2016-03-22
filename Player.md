@@ -79,8 +79,9 @@ Constructs new Player object.
 2. `options` *(Map)*: options map.
 
 Options:
-- hotkeys: true/false - enable standard Player hotkeys.
+- hotkeys: true/false - enable standard Player hotkeys. See [Hotkeys](hotkeys.md)
 - serverUrl: URL - back-end URL
+-
 
 #### Example
 
