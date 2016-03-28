@@ -500,7 +500,7 @@ player.seek(123456);
 
 ---
 
-### <a id="Player_seekToSec"></a>`Player.prototype.seekToSec(time)`
+### <a id="Player_seekSec"></a>`Player.prototype.seekSec(time)`
 Jump to a specific time.
 #### Arguments
 1. `time` *(Number)*: time in seconds
@@ -508,7 +508,7 @@ Jump to a specific time.
 #### Example
 
 ```js
-player.seek(300.043);
+player.seekSec(300.043);
 ```
 
 ---
