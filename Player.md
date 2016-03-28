@@ -79,10 +79,10 @@ Constructs new Player object.
 2. `options` *(Map)*: options map.
 
 Options:
-- hotkeys *(Boolean)*: - enable standard Player hotkeys. See [Hotkeys](hotkeys.md). Default is `false`
-- serverUrl *(String)*: URL - back-end URL
-- skinless *(Boolean)*: `true` for skinless mode (no controls at all), `false` for controls shown. Default is `false`
-- search: *(Boolean)*: `true` enables search field for caption tracks. Default is `false`
+- `hotkeys` *(Boolean)*: - enable standard Player hotkeys. See [Hotkeys](hotkeys.md). Default is `false`
+- `serverUrl` *(String)*: URL - back-end URL
+- `skinless` *(Boolean)*: `true` for skinless mode (no controls at all), `false` for controls shown. Default is `false`
+- `search` *(Boolean)*: `true` enables search field for caption tracks. Default is `false`
 
 #### Example
 
