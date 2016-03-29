@@ -37,8 +37,8 @@
 - [`setVolume`](#Player_setVolume)
 - [`getVolume`](#Player_getVolume)
 - [`seek`](#Player_seek)
-- [`seekToFrame`](#Player_seekToFrame)
-- [`seekToSec`](#Player_seekToSec)
+- [`seekFrame`](#Player_seekFrame)
+- [`seekSec`](#Player_seekSec)
 - [`nextFrame`](#Player_nextFrame)
 - [`previousFrame`](#Player_previousFrame)
 - [`nextSec`](#Player_nextSec)
@@ -488,26 +488,26 @@ player.seek(123456); //frame number
 
 ---
 
-### <a id="Player_seekToFrame"></a>`Player.prototype.seekToFrame(frameNumber)`
+### <a id="Player_seekFrame"></a>`Player.prototype.seekFrame(frameNumber)`
 Jump to a specific frame.
+
 #### Arguments
 1. `frameNumber` *(Integer)*: frame number
 
 #### Example
-
 ```js
-player.seek(123456);
+player.seekFrame(123456);
 ```
 
 ---
 
 ### <a id="Player_seekSec"></a>`Player.prototype.seekSec(time)`
 Jump to a specific time.
+
 #### Arguments
 1. `time` *(Number)*: time in seconds
 
 #### Example
-
 ```js
 player.seekSec(300.043);
 ```
