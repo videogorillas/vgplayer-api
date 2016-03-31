@@ -272,7 +272,7 @@ ws.onmessage = function(e){
 };
 ```
 
-## Sample Update Messages
+## Example Chunk Updates
 
 ### Chunk Reserved by a worker 
 
@@ -281,7 +281,7 @@ action: `RESERVED`
 Note: workerId is not present
 
 ```json
-chunk.update { command: 'iframes24',
+{ command: 'iframes24',
   jobId: 'v1315',
   mediaId: 'm349',
   mseq: 0,
@@ -302,7 +302,7 @@ chunk.update { command: 'iframes24',
 Note: workerId is `worker1`
 
 ```json
-chunk.update { command: 'iframes24',
+{ command: 'iframes24',
   jobId: 'v1315',
   mediaId: 'm349',
   mseq: 0,
@@ -316,8 +316,9 @@ chunk.update { command: 'iframes24',
   type: 'Chunk',
   tube: 'chunkQueue.done',
   action: 'INSERTED' }
-
-chunk.update { command: 'iframes24',
+```
+```json
+{ command: 'iframes24',
   jobId: 'v1315',
   mediaId: 'm349',
   mseq: 0,
