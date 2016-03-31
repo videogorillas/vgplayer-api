@@ -280,7 +280,7 @@ tube: `chunkQueue`
 action: `RESERVED`
 Note: workerId is not present
 
-```json
+```javascript
 { command: 'iframes24',
   jobId: 'v1315',
   mediaId: 'm349',
@@ -301,7 +301,7 @@ Note: workerId is not present
 
 Note: workerId is `worker1`
 
-```json
+```javascript
 { command: 'iframes24',
   jobId: 'v1315',
   mediaId: 'm349',
@@ -317,7 +317,7 @@ Note: workerId is `worker1`
   tube: 'chunkQueue.done',
   action: 'INSERTED' }
 ```
-```json
+```javascript
 { command: 'iframes24',
   jobId: 'v1315',
   mediaId: 'm349',
