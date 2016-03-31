@@ -253,3 +253,80 @@ ws.onmessage = function(e){
     }
 };
 ```
+
+`/ws/1/chunks` - websocket endpoint for all chunk updates
+
+Example code 
+
+```javascript
+ws = new WebSocket("ws://localhost:8042/ws/1/chunks");
+ws.onmessage = function(e){
+    if (debug) {
+        console.log(e);
+    }
+    var obj = JSON.parse(e.data);
+    if (obj["type"] == "Chunk") {
+        var chunk = obj;
+        console.log("chunk update", chunk);
+    }
+};
+```
+
+## Sample Update Messages
+
+### Chunk Reserved by a worker 
+
+tube: `chunkQueue`
+action: `RESERVED`
+Note: workerId is not present
+
+```json
+chunk.update { command: 'iframes24',
+  jobId: 'v1315',
+  mediaId: 'm349',
+  mseq: 0,
+  startSec: 0,
+  duration: 10.052166938781738,
+  videoUrl: '/api/1/storage/m349/segments/v00_0000.mp4',
+  params: { watermarktext: 'ga ag ga IP: 104.175.210.107' },
+  id: 'cq12000',
+  type: 'Chunk',
+  tube: 'chunkQueue',
+  action: 'RESERVED' }
+```
+
+### Chunk Completed by worker with id
+
+`INSERTED` into `chunkQueue.done` and `DELETED` from `chunkQueue`
+
+Note: workerId is `worker1`
+
+```json
+chunk.update { command: 'iframes24',
+  jobId: 'v1315',
+  mediaId: 'm349',
+  mseq: 0,
+  startSec: 0,
+  duration: 10.052166938781738,
+  videoUrl: '/api/1/storage/m349/segments/v00_0000.mp4',
+  params: { watermarktext: 'ga ag ga IP: 104.175.210.107' },
+  workerId: 'worker1',
+  id: 'cq12000',
+  resultUrls: [ 'http://zhuker.local:8042/api/1/storage/m349/v1315/iframes24_cq12000.mp4' ],
+  type: 'Chunk',
+  tube: 'chunkQueue.done',
+  action: 'INSERTED' }
+
+chunk.update { command: 'iframes24',
+  jobId: 'v1315',
+  mediaId: 'm349',
+  mseq: 0,
+  startSec: 0,
+  duration: 10.052166938781738,
+  videoUrl: '/api/1/storage/m349/segments/v00_0000.mp4',
+  params: { watermarktext: 'ga ag ga IP: 104.175.210.107' },
+  id: 'cq12000',
+  type: 'Chunk',
+  tube: 'chunkQueue',
+  action: 'DELETED' }
+```
