@@ -232,3 +232,24 @@ Response
   ]
   ```
 
+# WebSocket live update api
+
+`/ws/api` - websocket endpoint for all job and media updates
+
+Example code 
+
+```javascript
+ws = new WebSocket(wsurl);
+ws.onmessage = function(e){
+    if (debug) {
+        console.log(e);
+    }
+    var obj = JSON.parse(e.data);
+    if (obj["type"] == "Media") {
+        console.log("media update", obj);
+    }
+    if (obj["type"] == "Job") {
+        console.log("job update", obj);
+    }
+};
+```
