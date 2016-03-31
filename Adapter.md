@@ -189,3 +189,46 @@ Response
 
 Note: HLS url for player is in **resultUrls** array `/api/1/storage/m2744/v5565/hls.m3u8`
 
+# Get Completed Chunks of a Job
+
+Available since version 0.2
+
+Request
+```
+GET /api/1/job/getCompletedChunks/${JOB_ID_HERE}
+```
+
+Response
+```json
+[
+  {
+    "id": "cq9608",
+    "command": "thumbshq",
+    "jobId": "v1161",
+    "mediaId": "m331",
+    "mseq": 0,
+    "startSec": 0.0,
+    "duration": 19.978708267211914,
+    "videoUrl": "/api/1/storage/m331/segments/v00_0000.mp4",
+    "workerId": "worker-42",
+    "resultUrls": [
+      "http://zhuker.local:8042/api/1/storage/m331/v1161/thumbshq_cq9608.mp4"
+    ]
+  },
+  {
+    "id": "cq9613",
+    "command": "thumbshq",
+    "jobId": "v1161",
+    "mediaId": "m331",
+    "mseq": 1,
+    "startSec": 19.97800064086914,
+    "duration": 3.96270751953125,
+    "videoUrl": "/api/1/storage/m331/segments/v00_0001.mp4",
+    "workerId": "worker-43",
+    "resultUrls": [
+      "http://zhuker.local:8042/api/1/storage/m331/v1161/thumbshq_cq9613.mp4"
+    ]
+  }
+  ]
+  ```
+
