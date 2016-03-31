@@ -239,7 +239,7 @@ Response
 Example code 
 
 ```javascript
-ws = new WebSocket(wsurl);
+ws = new WebSocket("ws://localhost:8042/ws/api");
 ws.onmessage = function(e){
     if (debug) {
         console.log(e);
