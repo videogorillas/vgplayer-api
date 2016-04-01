@@ -6,14 +6,19 @@ Linux and Mac OS X
 
 Mac OSX
 
-```brew install ffmpeg --with-freetype --with-fontconfig --with-faac```
-```brew install imagemagick```
+```
+brew install ffmpeg --with-freetype --with-fontconfig --with-faac
+brew install imagemagick
+```
 
 Linux
 
 Download and compile ffmpeg with `ffmpeg_build.sh` 
-```apt-get install imagemagick```
-```apt-get install fonts-liberation```
+
+```
+apt-get install imagemagick
+apt-get install fonts-liberation
+```
 
 edit worker `config.json` 
 
