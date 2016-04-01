@@ -1,5 +1,22 @@
 # Workers deployment
 
+Linux and Mac OS X
+
+```npm install websocket```
+
+Mac OSX
+
+```brew install ffmpeg --with-freetype --with-fontconfig --with-faac```
+```brew install imagemagick```
+
+Linux
+
+Download and compile ffmpeg with `ffmpeg_build.sh` 
+```apt-get install imagemagick```
+```apt-get install fonts-liberation```
+
+edit worker `config.json` 
+
 Worker Config example
 ```json
 {
@@ -26,6 +43,7 @@ Worker Config example
   "fakem9k": true
 }
 ```
+Note: use `/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf` for `drawtext_fontfile` on Ubuntu
 
 ## Download or Update Worker JS code
 
