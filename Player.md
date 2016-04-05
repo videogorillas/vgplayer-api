@@ -100,7 +100,8 @@ The follow example shows the basic usage of a Player.
 ## _Player Instance Methods_ ##
 
 ### <a id="Player_load"></a>`Player.prototype.load(proxyIdOrURL, onDone)`
-Load proxy or file or stream into the player.
+Load proxy or file or stream into the player. `onDone` is called when the player is ready to use.
+
 #### Arguments
 1. `proxyIdOrURL` *(String)*: ID of the proxy or URL of the file/stream to open.
 2. `onDone` *(Function)*: callback function to execute when the proxy is loaded, takes one argument `error`.
@@ -111,6 +112,7 @@ Load proxy or file or stream into the player.
 player.load("PROXY_ID", function(err) {
     if (!err) {
         console.log("everything loaded just fine");
+        console.log("duration", player.getDurationSec());
     } else {
         console.error(err);
     }
@@ -120,7 +122,7 @@ player.load("PROXY_ID", function(err) {
 ---
 
 ### <a id="Player_loadUrl"></a>`Player.prototype.loadUrl(url, onDone)`
-Load file or stream into the player.
+Load file or stream into the player. `onDone` is called when the player is ready to use.
 #### Arguments
 1. `url` *(String)*: url of the file/stream to open.
 2. `onDone` *(Function)*: callback function to execute when the video is loaded, takes one argument `error`.
@@ -131,6 +133,7 @@ Load file or stream into the player.
 player.loadUrl("http://some.host.com/path/something.mpd", function(err) {
     if (!err) {
         console.log("everything loaded just fine");
+        console.log("duration", player.getDurationSec());
     } else {
         console.error(err);
     }
