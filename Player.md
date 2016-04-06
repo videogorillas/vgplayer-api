@@ -100,7 +100,8 @@ The follow example shows the basic usage of a Player.
 ## _Player Instance Methods_ ##
 
 ### <a id="Player_load"></a>`Player.prototype.load(proxyIdOrURL, onDone)`
-Load proxy or file or stream into the player. `onDone` is called when the player is ready to use.
+Load VG-proxy or file or stream into the player. `proxyIdOrURL` can be VG-proxy ID or an absolute URL. If it is an absolute URL [`loadUrl`](#Player_loadUrl) is called.
+`onDone` is called when the player is ready to use.
 
 #### Arguments
 1. `proxyIdOrURL` *(String)*: ID of the proxy or URL of the file/stream to open.
