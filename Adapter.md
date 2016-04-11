@@ -13,9 +13,9 @@ var mediaRequest = {
   'url': videoUrl,
   "commands": [ "nocache", "makehls1", "vgproxy", "makedash" ],
   "commandParams": {
-   "makedash": {"watermarkText": "hello world"},
-   "vgproxy": {"watermarkText": "hello world"},
-   "makehls1": {"watermarkText": "hello world"}
+   "makedash": {"watermarktext": "hello world"},
+   "vgproxy": {"watermarktext": "hello world"},
+   "makehls1": {"watermarktext": "hello world"}
   }
 };
 
@@ -47,9 +47,9 @@ Content-Type:application/json
   "url": "http://server.com/path/to/video.mp4",
   "commands": [ "nocache", "makehls1", "vgproxy", "makedash" ],
   "commandParams": {
-   "makedash": {"watermarkText": "hello world"},
-   "vgproxy": {"watermarkText": "hello world"},
-   "makehls1": {"watermarkText": "hello world"}
+   "makedash": {"watermarktext": "hello world"},
+   "vgproxy": {"watermarktext": "hello world"},
+   "makehls1": {"watermarktext": "hello world"}
   }
 }
 ```
@@ -63,9 +63,9 @@ Response
   "hasThumbnail": false,
   "commands": [ "nocache", "makehls1", "vgproxy", "makedash" ],
   "commandParams": {
-   "makedash": {"watermarkText": "hello world"},
-   "vgproxy": {"watermarkText": "hello world"},
-   "makehls1": {"watermarkText": "hello world"}
+   "makedash": {"watermarktext": "hello world"},
+   "vgproxy": {"watermarktext": "hello world"},
+   "makehls1": {"watermarktext": "hello world"}
   }
 }
 ```
@@ -135,7 +135,7 @@ Response
   "url": "http://server.com/path/to/video.mp4",
   "hasThumbnail": false,
   "commands": [ "nocache", "makehls1", "vgproxy", "makedash" ],
-  "commandParams": {"makedash": {"watermarkText": "hello world"}},
+  "commandParams": {"makedash": {"watermarktext": "hello world"}},
   "makedashJobId": "v7",
   "vgproxyJobId": "v4"
 }
