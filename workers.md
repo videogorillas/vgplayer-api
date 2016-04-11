@@ -9,6 +9,7 @@ Mac OSX
 ```
 brew install ffmpeg --with-freetype --with-fontconfig --with-faac
 brew install imagemagick
+brew install nodejs
 ```
 
 Linux
