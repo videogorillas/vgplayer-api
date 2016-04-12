@@ -49,6 +49,7 @@
 - [`cancelRange`](#Player_cancelRange)
 - [`hasRange`](#Player_hasRange)
 - [`setLoop`](#Player_setLoop)
+- [`setPauseOnLoop`](#Player_setPauseOnLoop)
 - [`enterFullscreen`](#Player_enterFullscreen)
 - [`exitFullscreen`](#Player_exitFullscreen)
 - [`muteAudioTrack`](#Player_muteAudioTrack)
@@ -597,19 +598,18 @@ player.setCurrentAudioTrack("eng_5.1");
 
 ---
 
-### <a id="Player_setRange"></a>`Player.prototype.setRange(fromTime, toTime, loop)`
-Set playback range and optionally enter loop mode. Times can be in any format: tape timecode, standard timecode, frame number.
+### <a id="Player_setRange"></a>`Player.prototype.setRange(fromTime, toTime)`
+Set playback range. Times can be in any format: tape timecode, standard timecode, frame number.
 
 #### Arguments
 1. `fromTime` *(tape timecode / standard timecode / frame number)*: start of the range
 2. `toTime` *(tape timecode / standard timecode / frame number)*: end of the range
-3. `loop` *(Boolean)*: optional, defaults to false. If set to true switches to loop mode
 
 #### Example
 
 ```js
-player.setRange("01:00:00:00", "01:13:37:23", true);
-player.setRange(10000, 10256, true);
+player.setRange("01:00:00:00", "01:13:37:23");
+player.setRange(10000, 10256);
 ```
 
 ---
@@ -628,10 +628,18 @@ Tell if player is in range mode.
 ---
 
 ### <a id="Player_setLoop"></a>`Player.prototype.setLoop(loop)`
-Switch between loop/continuous playback modes. In loop mode playback loops within the range previously set by setRange() method.
+Turn loop mode on/off. In loop mode playback loops within the range previously set by `setRange` method.
 
 #### Arguments
-1. `loop` *(Boolean)*: true for loop, false for continuos playback
+1. `loop` *(Boolean)*: `true` for loop, `false` for pause
+
+---
+
+### <a id="Player_setPauseOnLoop"></a>`Player.prototype.setPauseOnLoop(pauseOnLoop)`
+Pause the player after auto-rewind in loop mode. Does nothing if not in loop mode.
+
+#### Arguments
+1. `pauseOnLoop` *(Boolean)*: `true` for auto-pause, `false` for continuous playback
 
 ---
 
