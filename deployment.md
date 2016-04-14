@@ -8,32 +8,32 @@ When workers are done the results are submitted to Queue and Cache Manager
 
 # Deployment Diagram
 
-!(Deployment.png "Deployment")
+![](Deployment.png "Deployment")
 
 # Logical Workflow Diagram
 
-!(LogicalFlow.png "Logical")
+![](LogicalFlow.png "Logical")
 
 # Environment
 
-Ubuntu 14.04 LTS 64bit
-Available Storage approx 2MB per second of content
-Shared Database and Storage access for Queue Manager and Chunk Dispatcher
-No root access required
-Open port 8042 (configurable)
+* Ubuntu 14.04 LTS 64bit
+* Available Storage approx 2MB per second of content
+* Shared Database and Storage access for Queue Manager and Chunk Dispatcher
+* No root access required
+* Open port 8042 (configurable)
 
 # Queue Manager Node
 
-Ubuntu 14.04 LTS 64bit
-Redis 3+
-Java 8
-Ffmpeg 2.8+ with SSL support
+* Ubuntu 14.04 LTS 64bit
+* Redis 3+
+* Java 8
+* Ffmpeg 2.8+ with SSL support
 
 # Worker Nodes
 
-Ubuntu 14.04 LTS 64bit
-NodeJS 5.9+
-Ffmpeg 2.8+ with SSL support
+* Ubuntu 14.04 LTS 64bit
+* NodeJS 5.9+
+* Ffmpeg 2.8+ with SSL support
 
 # Queue Manager Node Setup
 
@@ -47,6 +47,7 @@ Ffmpeg 2.8+ with SSL support
 ## Install Redis
 
 Redis server should be of version 2.8.7 or higher (BITPOS command support) The one that comes with stock ubuntu 14.04 is outdated
+
 ```
 # sudo add-apt-repository ppa:chris-lea/redis-server
 # sudo apt-get update
