@@ -80,7 +80,7 @@ cloud-0.1-uberjar.jar
   "redisDb": 0,
   "httpport": 8042,
   "httpsport": 8443,
-  "redisHost": "zhuker.local",
+  "redisHost": "localhost",
   "websiteDomain": "zhuker.local:8042",
   "cloudfrontDomain": "zhuker.local:8042",
   "logsDir": "logs",
