@@ -26,7 +26,9 @@ Linux and Mac OS X
 
 ```npm install websocket```
 
-edit worker `config.json`
+Edit worker `config.json`
+
+Set queue manager domain name and port in `serverurl` and `wsurl`. Use *localhost* if workers and the queue manager are running on the same host.
 
 Worker Config example
 ```json
