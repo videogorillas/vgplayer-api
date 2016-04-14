@@ -1,9 +1,5 @@
 # Workers deployment
 
-Linux and Mac OS X
-
-```npm install websocket```
-
 Mac OSX
 
 ```
@@ -19,9 +15,14 @@ Download and compile ffmpeg with `ffmpeg_build.sh`
 ```
 apt-get install imagemagick
 apt-get install fonts-liberation
+curl -sL https://deb.nodesource.com/setup_5.x | bash - ; apt-get install -y nodejs
 ```
 
-edit worker `config.json` 
+Linux and Mac OS X
+
+```npm install websocket```
+
+edit worker `config.json`
 
 Worker Config example
 ```json
