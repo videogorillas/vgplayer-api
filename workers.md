@@ -12,7 +12,9 @@ Linux
 
 Download ffmpeg 2.8+ sources from http://ffmpeg.org/download.html
 
-Compile ffmpeg with [`ffmpeg_build.sh`](ffmpeg_build.sh)
+Edit [`ffmpeg_build.sh`](ffmpeg_build.sh) script to point to ffmpeg souce folder.
+
+Build ffmpeg:
 
 ```
 apt-get install imagemagick
