@@ -111,4 +111,7 @@ cloud-0.1-uberjar.jar
 # java -cp cloud-717-uberjar.jar -Dffmpeg=/home/ubuntu/cloud2398/ffmpeg-2.8.6/ffmpeg -Dffprobe=/home/ubuntu/cloud2398/ffmpeg-2.8.6/ffprobe  com.vg.cloud.DispatcherMain
 ```
 
+# Start Workers
+
+See [Worker Guide](workers.md)
 
