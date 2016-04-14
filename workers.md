@@ -72,3 +72,10 @@ Note: use `/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf` for 
 latest=`ls -t workersmain*js`
 node $latest
 ```
+
+### Example script
+```
+curl -vv -f -O -J -L http://localhost:8042/workersmain.js
+workerId=w42
+while true ;do node `ls -t worker*js` chunkQueue $workerId || sleep 1 ;done
+```
