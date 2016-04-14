@@ -1,10 +1,10 @@
 # Workflow Overview
 
-Media url is submitted to Queue Manager via a RESTful API
-Media job is picked up by Dispatcher
-Dispatcher splits Media Job into multiple chunks: e.g. 10 minute video will be split into 120 chunks each five second long
-Chunks are picked up from chunk queue by Workers
-When workers are done the results are submitted to Queue and Cache Manager
+Media url is submitted to Queue Manager via a RESTful API.
+Media job is picked up by Dispatcher.
+Dispatcher splits Media Job into multiple chunks: e.g. 10 minute video will be split into 120 chunks each five second long.
+Chunks are picked up from chunk queue by Workers.
+When workers are done the results are submitted to Queue and Cache Manager.
 
 # Deployment Diagram
 
@@ -56,12 +56,15 @@ Redis server should be of version 2.8.7 or higher (BITPOS command support) The o
 
 ## Install ffmpeg 
 
-Download ffmpeg 2.8+ http://ffmpeg.org/download.html 
-Build ffmpeg 
+Download ffmpeg 2.8+ sources http://ffmpeg.org/download.html
+
+Edit [`ffmpeg_build.sh`](ffmpeg_build.sh) script to point to ffmpeg souce folder.
+
+Build ffmpeg:
+
 ```
 # ./ffmpeg_build.sh
 ```
-Edit the script to point to ffmpeg 2.8.6 folder. Let the last line commented
 
 
 # Download Application jar
@@ -102,13 +105,13 @@ cloud-0.1-uberjar.jar
 # Start Queue Manager
 
 ```
-# java -cp cloud-717-uberjar.jar -Dffmpeg=/home/ubuntu/cloud2398/ffmpeg-2.8.6/ffmpeg -Dffprobe=/home/ubuntu/cloud2398/ffmpeg-2.8.6/ffprobe com.vg.cloud.CloudWebServerMain 
+# java -cp cloud-717-uberjar.jar -Dffmpeg=/home/ubuntu/cloud2398/ffmpeg-3.0.1/ffmpeg -Dffprobe=/home/ubuntu/cloud2398/ffmpeg-3.0.1/ffprobe com.vg.cloud.CloudWebServerMain
 ```
 
 # Start Dispatcher
 
 ```
-# java -cp cloud-717-uberjar.jar -Dffmpeg=/home/ubuntu/cloud2398/ffmpeg-2.8.6/ffmpeg -Dffprobe=/home/ubuntu/cloud2398/ffmpeg-2.8.6/ffprobe  com.vg.cloud.DispatcherMain
+# java -cp cloud-717-uberjar.jar -Dffmpeg=/home/ubuntu/cloud2398/ffmpeg-3.0.1/ffmpeg -Dffprobe=/home/ubuntu/cloud2398/ffmpeg-3.0.1/ffprobe  com.vg.cloud.DispatcherMain
 ```
 
 # Start Workers

@@ -10,7 +10,9 @@ brew install nodejs
 
 Linux
 
-Download and compile ffmpeg with `ffmpeg_build.sh` 
+Download ffmpeg 2.8+ sources from http://ffmpeg.org/download.html
+
+Compile ffmpeg with [`ffmpeg_build.sh`](ffmpeg_build.sh)
 
 ```
 apt-get install imagemagick
