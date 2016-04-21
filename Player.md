@@ -364,6 +364,7 @@ Supported event types:
 - `fullscreen` player enters/exits full screen mode. Boolean status is passed to the handler.
 - `timeupdate` playback position changes. `TimeSample` object is passed to the handler.
 - `load` player is ready, media is loaded. Can be added right after Player instance creation.
+- `play` playback state. Boolean value is passed to the handler: `true` when playback has been started, `false` when paused.
 
 #### Arguments
 1. `type` *(String)*: event type
