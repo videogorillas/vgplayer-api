@@ -37,8 +37,8 @@
 - [`setVolume`](#Player_setVolume)
 - [`getVolume`](#Player_getVolume)
 - [`seek`](#Player_seek)
-- [`seekToFrame`](#Player_seekToFrame)
-- [`seekToSec`](#Player_seekToSec)
+- [`seekFrame`](#Player_seekFrame)
+- [`seekSec`](#Player_seekSec)
 - [`nextFrame`](#Player_nextFrame)
 - [`previousFrame`](#Player_previousFrame)
 - [`nextSec`](#Player_nextSec)
@@ -49,6 +49,7 @@
 - [`cancelRange`](#Player_cancelRange)
 - [`hasRange`](#Player_hasRange)
 - [`setLoop`](#Player_setLoop)
+- [`setPauseOnLoop`](#Player_setPauseOnLoop)
 - [`enterFullscreen`](#Player_enterFullscreen)
 - [`exitFullscreen`](#Player_exitFullscreen)
 - [`muteAudioTrack`](#Player_muteAudioTrack)
@@ -100,7 +101,9 @@ The follow example shows the basic usage of a Player.
 ## _Player Instance Methods_ ##
 
 ### <a id="Player_load"></a>`Player.prototype.load(proxyIdOrURL, onDone)`
-Load proxy or file or stream into the player.
+Load VG-proxy or file or stream into the player. `proxyIdOrURL` can be VG-proxy ID or an absolute URL. If it is an absolute URL [`loadUrl`](#Player_loadUrl) is called.
+`onDone` is called when the player is ready to use.
+
 #### Arguments
 1. `proxyIdOrURL` *(String)*: ID of the proxy or URL of the file/stream to open.
 2. `onDone` *(Function)*: callback function to execute when the proxy is loaded, takes one argument `error`.
@@ -111,6 +114,7 @@ Load proxy or file or stream into the player.
 player.load("PROXY_ID", function(err) {
     if (!err) {
         console.log("everything loaded just fine");
+        console.log("duration", player.getDurationSec());
     } else {
         console.error(err);
     }
@@ -120,7 +124,7 @@ player.load("PROXY_ID", function(err) {
 ---
 
 ### <a id="Player_loadUrl"></a>`Player.prototype.loadUrl(url, onDone)`
-Load file or stream into the player.
+Load file or stream into the player. `onDone` is called when the player is ready to use.
 #### Arguments
 1. `url` *(String)*: url of the file/stream to open.
 2. `onDone` *(Function)*: callback function to execute when the video is loaded, takes one argument `error`.
@@ -131,6 +135,7 @@ Load file or stream into the player.
 player.loadUrl("http://some.host.com/path/something.mpd", function(err) {
     if (!err) {
         console.log("everything loaded just fine");
+        console.log("duration", player.getDurationSec());
     } else {
         console.error(err);
     }
@@ -359,6 +364,7 @@ Supported event types:
 - `fullscreen` player enters/exits full screen mode. Boolean status is passed to the handler.
 - `timeupdate` playback position changes. `TimeSample` object is passed to the handler.
 - `load` player is ready, media is loaded. Can be added right after Player instance creation.
+- `play` playback state. Boolean value is passed to the handler: `true` when playback has been started, `false` when paused.
 
 #### Arguments
 1. `type` *(String)*: event type
@@ -488,26 +494,26 @@ player.seek(123456); //frame number
 
 ---
 
-### <a id="Player_seekToFrame"></a>`Player.prototype.seekToFrame(frameNumber)`
+### <a id="Player_seekFrame"></a>`Player.prototype.seekFrame(frameNumber)`
 Jump to a specific frame.
+
 #### Arguments
 1. `frameNumber` *(Integer)*: frame number
 
 #### Example
-
 ```js
-player.seek(123456);
+player.seekFrame(123456);
 ```
 
 ---
 
 ### <a id="Player_seekSec"></a>`Player.prototype.seekSec(time)`
 Jump to a specific time.
+
 #### Arguments
 1. `time` *(Number)*: time in seconds
 
 #### Example
-
 ```js
 player.seekSec(300.043);
 ```
@@ -593,19 +599,18 @@ player.setCurrentAudioTrack("eng_5.1");
 
 ---
 
-### <a id="Player_setRange"></a>`Player.prototype.setRange(fromTime, toTime, loop)`
-Set playback range and optionally enter loop mode. Times can be in any format: tape timecode, standard timecode, frame number.
+### <a id="Player_setRange"></a>`Player.prototype.setRange(fromTime, toTime)`
+Set playback range. Times can be in any format: tape timecode, standard timecode, frame number.
 
 #### Arguments
 1. `fromTime` *(tape timecode / standard timecode / frame number)*: start of the range
 2. `toTime` *(tape timecode / standard timecode / frame number)*: end of the range
-3. `loop` *(Boolean)*: optional, defaults to false. If set to true switches to loop mode
 
 #### Example
 
 ```js
-player.setRange("01:00:00:00", "01:13:37:23", true);
-player.setRange(10000, 10256, true);
+player.setRange("01:00:00:00", "01:13:37:23");
+player.setRange(10000, 10256);
 ```
 
 ---
@@ -624,10 +629,18 @@ Tell if player is in range mode.
 ---
 
 ### <a id="Player_setLoop"></a>`Player.prototype.setLoop(loop)`
-Switch between loop/continuous playback modes. In loop mode playback loops within the range previously set by setRange() method.
+Turn loop mode on/off. In loop mode playback loops within the range previously set by `setRange` method.
 
 #### Arguments
-1. `loop` *(Boolean)*: true for loop, false for continuos playback
+1. `loop` *(Boolean)*: `true` for loop, `false` for pause
+
+---
+
+### <a id="Player_setPauseOnLoop"></a>`Player.prototype.setPauseOnLoop(pauseOnLoop)`
+Pause the player after auto-rewind in loop mode. Does nothing if not in loop mode.
+
+#### Arguments
+1. `pauseOnLoop` *(Boolean)*: `true` for auto-pause, `false` for continuous playback
 
 ---
 

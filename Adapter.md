@@ -13,9 +13,9 @@ var mediaRequest = {
   'url': videoUrl,
   "commands": [ "nocache", "makehls1", "vgproxy", "makedash" ],
   "commandParams": {
-   "makedash": {"watermarkText": "hello world"},
-   "vgproxy": {"watermarkText": "hello world"},
-   "makehls1": {"watermarkText": "hello world"}
+   "makedash": {"watermarktext": "hello world"},
+   "vgproxy": {"watermarktext": "hello world"},
+   "makehls1": {"watermarktext": "hello world"}
   }
 };
 
@@ -47,9 +47,9 @@ Content-Type:application/json
   "url": "http://server.com/path/to/video.mp4",
   "commands": [ "nocache", "makehls1", "vgproxy", "makedash" ],
   "commandParams": {
-   "makedash": {"watermarkText": "hello world"},
-   "vgproxy": {"watermarkText": "hello world"},
-   "makehls1": {"watermarkText": "hello world"}
+   "makedash": {"watermarktext": "hello world"},
+   "vgproxy": {"watermarktext": "hello world"},
+   "makehls1": {"watermarktext": "hello world"}
   }
 }
 ```
@@ -63,9 +63,9 @@ Response
   "hasThumbnail": false,
   "commands": [ "nocache", "makehls1", "vgproxy", "makedash" ],
   "commandParams": {
-   "makedash": {"watermarkText": "hello world"},
-   "vgproxy": {"watermarkText": "hello world"},
-   "makehls1": {"watermarkText": "hello world"}
+   "makedash": {"watermarktext": "hello world"},
+   "vgproxy": {"watermarktext": "hello world"},
+   "makehls1": {"watermarktext": "hello world"}
   }
 }
 ```
@@ -135,7 +135,7 @@ Response
   "url": "http://server.com/path/to/video.mp4",
   "hasThumbnail": false,
   "commands": [ "nocache", "makehls1", "vgproxy", "makedash" ],
-  "commandParams": {"makedash": {"watermarkText": "hello world"}},
+  "commandParams": {"makedash": {"watermarktext": "hello world"}},
   "makedashJobId": "v7",
   "vgproxyJobId": "v4"
 }
@@ -189,3 +189,145 @@ Response
 
 Note: HLS url for player is in **resultUrls** array `/api/1/storage/m2744/v5565/hls.m3u8`
 
+# Get Completed Chunks of a Job
+
+Available since version 0.2
+
+Request
+```
+GET /api/1/job/getCompletedChunks/${JOB_ID_HERE}
+```
+
+Response
+```json
+[
+  {
+    "id": "cq9608",
+    "command": "thumbshq",
+    "jobId": "v1161",
+    "mediaId": "m331",
+    "mseq": 0,
+    "startSec": 0.0,
+    "duration": 19.978708267211914,
+    "videoUrl": "/api/1/storage/m331/segments/v00_0000.mp4",
+    "workerId": "worker-42",
+    "resultUrls": [
+      "http://zhuker.local:8042/api/1/storage/m331/v1161/thumbshq_cq9608.mp4"
+    ]
+  },
+  {
+    "id": "cq9613",
+    "command": "thumbshq",
+    "jobId": "v1161",
+    "mediaId": "m331",
+    "mseq": 1,
+    "startSec": 19.97800064086914,
+    "duration": 3.96270751953125,
+    "videoUrl": "/api/1/storage/m331/segments/v00_0001.mp4",
+    "workerId": "worker-43",
+    "resultUrls": [
+      "http://zhuker.local:8042/api/1/storage/m331/v1161/thumbshq_cq9613.mp4"
+    ]
+  }
+  ]
+  ```
+
+# WebSocket live update api
+
+`/ws/api` - websocket endpoint for all job and media updates
+
+Example code 
+
+```javascript
+ws = new WebSocket("ws://localhost:8042/ws/api");
+ws.onmessage = function(e){
+    if (debug) {
+        console.log(e);
+    }
+    var obj = JSON.parse(e.data);
+    if (obj["type"] == "Media") {
+        console.log("media update", obj);
+    }
+    if (obj["type"] == "Job") {
+        console.log("job update", obj);
+    }
+};
+```
+
+`/ws/1/chunks` - websocket endpoint for all chunk updates
+
+Example code 
+
+```javascript
+ws = new WebSocket("ws://localhost:8042/ws/1/chunks");
+ws.onmessage = function(e){
+    if (debug) {
+        console.log(e);
+    }
+    var obj = JSON.parse(e.data);
+    if (obj["type"] == "Chunk") {
+        var chunk = obj;
+        console.log("chunk update", chunk);
+    }
+};
+```
+
+## Example Chunk Updates
+
+### Chunk Reserved by a worker 
+
+tube: `chunkQueue`
+action: `RESERVED`
+Note: workerId is not present
+
+```javascript
+{ command: 'iframes24',
+  jobId: 'v1315',
+  mediaId: 'm349',
+  mseq: 0,
+  startSec: 0,
+  duration: 10.052166938781738,
+  videoUrl: '/api/1/storage/m349/segments/v00_0000.mp4',
+  params: { watermarktext: 'ga ag ga IP: 104.175.210.107' },
+  id: 'cq12000',
+  type: 'Chunk',
+  tube: 'chunkQueue',
+  action: 'RESERVED' }
+```
+
+### Chunk Completed by worker with id
+
+`INSERTED` into `chunkQueue.done` and `DELETED` from `chunkQueue`
+
+Note: workerId is `worker1`
+
+```javascript
+{ command: 'iframes24',
+  jobId: 'v1315',
+  mediaId: 'm349',
+  mseq: 0,
+  startSec: 0,
+  duration: 10.052166938781738,
+  videoUrl: '/api/1/storage/m349/segments/v00_0000.mp4',
+  params: { watermarktext: 'ga ag ga IP: 104.175.210.107' },
+  workerId: 'worker1',
+  id: 'cq12000',
+  resultUrls: [ 'http://zhuker.local:8042/api/1/storage/m349/v1315/iframes24_cq12000.mp4' ],
+  type: 'Chunk',
+  tube: 'chunkQueue.done',
+  action: 'INSERTED' }
+```
+```javascript
+{ command: 'iframes24',
+  jobId: 'v1315',
+  mediaId: 'm349',
+  mseq: 0,
+  startSec: 0,
+  duration: 10.052166938781738,
+  videoUrl: '/api/1/storage/m349/segments/v00_0000.mp4',
+  params: { watermarktext: 'ga ag ga IP: 104.175.210.107' },
+  id: 'cq12000',
+  type: 'Chunk',
+  tube: 'chunkQueue',
+  action: 'DELETED' }
+```
