@@ -366,7 +366,7 @@ Supported event types:
 - `timeupdate` playback position changes. `TimeSample` object is passed to the handler.
 - `load` player is ready, media is loaded. Can be added right after Player instance creation.
 - `play` playback state. Boolean value is passed to the handler: `true` when playback has been started, `false` when paused.
-- `timeline` timeline updates. [`Timeline`](Timeline.md) instance is passed to the handler.
+- `timeline` timeline updates. [`Timeline`](Timeline.md) instance is passed to the handler. Fired on duration change.
 
 #### Arguments
 1. `type` *(String)*: event type
