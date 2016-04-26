@@ -8,7 +8,7 @@
 ## _FilmStripDrawer Instance Methods_ ##
 
 ### <a id="#FilmStripDrawer_getInfo"></a>`FilmStripDrawer.prototype.getInfo()`
-Get thumbnails stream info: frame width, height, number of frames.
+Get thumbnail stream info: frame width, height, number of frames.
 
 #### Returns
 *(Object)*: object containing frame width, height, number of frames
@@ -32,26 +32,20 @@ Assume each chunk is 125 frames (5 seconds long, 25 frames/sec). Calculated fram
 *framePrecise=true*:
 `drawFilmstrip(canvas, 100, 270, 5, true)`
 
-|      |      |      |      |      |
-|------|------|------|------|------|
 | #100 | #134 | #168 | #203 | #270 |
-|      |      |      |      |      |
+|------|------|------|------|------|
 
 *framePrecise=false*: the first frames of respective video chunks are used. `startFrame` and `endFrame` are exception.
 `drawFilmstrip(canvas, 100, 600, 5, true)`
 
-|      |      |      |      |      |
-|------|------|------|------|------|
 | #100 | #125 | #250 | #375 | #600 |
-|      |      |      |      |      |
+|------|------|------|------|------|
 
 *framePrecise* flag is ignored if some frames are to be duplicated (frame #125 in the example). The filmstrip will be rendered in frame precise mode.
 `drawFilmstrip(canvas, 100, 270, 5, false)`
 
-|      |      |      |      |      |
-|------|------|------|------|------|
 | #100 | **#125** | **#125** | **#125** | #270 |
-|      |      |      |      |      |
+|------|----------|----------|----------|------|
 
 #### Arguments
 1. `canvasElement` *(HTML Element)*: html canvas element to draw on
