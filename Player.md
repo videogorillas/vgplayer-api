@@ -25,6 +25,7 @@
 - [`setStartTapeTimecode`](#Player_setStartTapeTimecode)
 - [`addEventListener`](#Player_addEventListener)
 - [`removeEventListener`](#Player_removeEventListener)
+- [`getFilmStripDrawer`](#Player_getFilmStripDrawer)
 
 ### Playback Control Methods
 
@@ -365,6 +366,7 @@ Supported event types:
 - `timeupdate` playback position changes. `TimeSample` object is passed to the handler.
 - `load` player is ready, media is loaded. Can be added right after Player instance creation.
 - `play` playback state. Boolean value is passed to the handler: `true` when playback has been started, `false` when paused.
+- `timeline` timeline updates. [`Timeline`](Timeline.md) instance is passed to the handler.
 
 #### Arguments
 1. `type` *(String)*: event type
@@ -399,6 +401,24 @@ player.load("PROXY_ID", function (err) {
     player.addEventListener("timeupdate", onTimeUpdate);
     // some code
     player.removeEventListener("timeupdate", onTimeUpdate);
+});
+```
+
+---
+
+### <a id="Player_getFilmStripDrawer"></a>`Player.prototype.getFilmStripDrawer(callback)`
+Get filmstrip drawer. [`FilmStripDrawer`](FilmStripDrawer.md) instance is passed in a callback.
+Use in `player.load` callback.
+
+#### Arguments
+1. `callback` *(Function)*: callback
+
+#### Example
+```js
+player.load("PROXY_ID", function (err) {
+    player.getFilmStripDrawer(function(drawer) {
+       console.log(drawer.getInfo());
+    });
 });
 ```
 
