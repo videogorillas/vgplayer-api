@@ -26,6 +26,8 @@
 - [`addEventListener`](#Player_addEventListener)
 - [`removeEventListener`](#Player_removeEventListener)
 - [`getFilmStripDrawer`](#Player_getFilmStripDrawer)
+- [`getCaptionsList`](#Player_getCaptionsList)
+- [`getAudioTracks`](#Player_getAudioTracks)
 
 ### Playback Control Methods
 
@@ -421,6 +423,22 @@ player.load("PROXY_ID", function (err) {
     });
 });
 ```
+
+---
+
+### <a id="Player_getCaptionsList"></a>`Player.prototype.getCaptionsList()`
+Get List of Captions and Subtitles currently imported into the Player.
+
+#### Returns
+*(List<Subtitles>)*: List of Subtitle objects
+
+---
+
+### <a id="Player_getAudioTracks"></a>`Player.prototype.getAudioTracks()`
+Get List of Audio Tracks currently imported into the Player.
+
+#### Returns
+*(Array<PlayerAudioTrack>)*: List of PlayerAudioTrack objects
 
 ---
 
