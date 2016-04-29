@@ -7,7 +7,7 @@ Plugin provides API for saving or cropping of currently displayed frame.
 ```PlayerMain.enableCropPlugin(
         Player player,
         Element cropContainerEl,
-        Callback1<VGCropPlugin> onCropRequested);
+        Callback1<VGCropPluginView, VGCropPlugin> onCropRequested);
 ```
 
 ### Callbacks
