@@ -40,8 +40,9 @@ When workers are done the results are submitted to Queue and Cache Manager.
 ## Install java8
 
 ```
-# apt-add-repository ppa:webupd8team/java
-# apt-get install oracle-java8-installer
+# sudo apt-add-repository ppa:webupd8team/java
+# sudo apt-get update
+# sudo apt-get install oracle-java8-installer
 ```
 
 ## Install Redis
@@ -89,6 +90,8 @@ cloud-0.1-uberjar.jar
   "sessionsDir": "sessions",
   "workerStorageDir": "/Users/zhukov/worker_storage/",
   "prodStorageDir": "/Users/zhukov/storage/",
+  "watermarkStorageDir": "/Users/zhukov/watermarks", 
+  "priorityAlgorithm": "faststart", 
   "ffmpeg": "/usr/local/bin/ffmpeg",
   "convert": "/usr/local/bin/convert",
   "ffprobe": "/usr/local/bin/ffprobe",

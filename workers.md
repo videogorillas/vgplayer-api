@@ -45,6 +45,8 @@ Worker Config example
   "sessionsDir": "sessions",
   "workerStorageDir": "/Users/zhukov/worker_storage/",
   "prodStorageDir": "/Users/zhukov/storage/",
+  "watermarkStorageDir": "/Users/zhukov/watermarks", 
+  "priorityAlgorithm": "faststart", 
   "ffmpeg": "/usr/local/bin/ffmpeg",
   "convert": "/usr/local/bin/convert",
   "ffprobe": "/usr/local/bin/ffprobe",
