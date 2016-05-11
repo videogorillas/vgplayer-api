@@ -33,9 +33,9 @@ String codec = Captions.guessSubtitleCodec("http://server/url/to/subs.srt");
 
 Downloads and parses subtitles given a url
 
-- timeline Player Timeline object to align subtitles to
+- `timeline` Player Timeline object to align subtitles to
 
-- url url to subtitles
+- `url` url to subtitles
 
-- codec subtitle type 
- 
+- `codec` subtitle type. Available codecs: `srt`, `webvtt`, `stl`, `c890`, `dcsubs`
+
