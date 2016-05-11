@@ -12,6 +12,8 @@ Observable<Subtitles> subsRx = Captions.parseSubs(player.getTimeline(), "http://
 
 subsRx.subscribe(subs -> {
 	console.log("subs parsed", subs);
+	//if subs need to be offset
+	subs = Captions.offsetCaptions(subs, 42042, player.getTimeline());
 }, err -> {
 	console.error("error parsing subs", err);
 });
@@ -22,6 +24,8 @@ subsRx.subscribe(subs -> {
 - [`guessSubtitleCodec()`](#guessSubtitleCodec)
 
 - [`parseSubs()`](#parseSubs)
+
+- [`offsetCaptions()`](#offsetCaptions)
 
 ### <a id="guessSubtitleCodec"></a>`String guessSubtitleCodec()`
 
@@ -41,6 +45,18 @@ Returns: `Observable<Subtitles>` observable with one item emitted when parsing i
 - `url` url to subtitles
 
 - `codec` subtitle type. Available codecs: `srt`, `webvtt`, `stl`, `c890`, `dcsubs`
+
+### <a id="offsetCaptions"></a>`Subtitles offsetCaptions(Subtitles captions, long offsetTv, Timeline timeline)`
+
+Offsets subtitles by specified time value
+
+Returns: `Subtitles` offset subtitles object
+
+- `captions` source subtitle object to offset
+
+- `offsetTv` timevalue to offset by
+
+- `timeline` Player Timeline object to align subtitles to
 
 
 # `Subtitles` #
