@@ -29,6 +29,13 @@ Returns String with subtitle codec/format based on url
 String codec = Captions.guessSubtitleCodec("http://server/url/to/subs.srt");
 ```
  
-### <a id="parseSubs"></a>`Observable<Subtitles> parseSubs`
+### <a id="parseSubs"></a>`Observable<Subtitles> parseSubs(Timeline timeline, String url, String codec)`
 
-Called when Capture Frame Icon clicked. Stops playback. This can be used to open crop UI and do actual cropping.
+Downloads and parses subtitles given a url
+
+- timeline Player Timeline object to align subtitles to
+
+- url url to subtitles
+
+- codec subtitle type 
+ 
