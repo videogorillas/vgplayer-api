@@ -298,7 +298,7 @@ var track = player.getAudioTrack("my_track_id_123");
 ### <a id="Player_addCaptions"></a>`Player.prototype.addCaptions(captions)`
 Add captions/subtitles track.
 #### Arguments
-1. `captions` *(Subtitles)*: parsed captions. See [`Subtitles`](Subtitles.md)
+1. `captions` *(Subtitles)*: parsed captions. See [`Subtitles`](Subtitles.md#subtitles)
 
 #### Example
 ```js
