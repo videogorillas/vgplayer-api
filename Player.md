@@ -104,7 +104,13 @@ The follow example shows the basic usage of a Player.
 ## _Player Instance Methods_ ##
 
 ### <a id="Player_load"></a>`Player.prototype.load(proxyIdOrURL, onDone)`
-Load VG-proxy or file or stream into the player. `proxyIdOrURL` can be VG-proxy ID or an absolute URL. If it is an absolute URL [`loadUrl`](#Player_loadUrl) is called.
+Load VG-proxy or file or stream into the player. `proxyIdOrURL` is treated as URL and passed to [`loadUrl`](#Player_loadUrl) in these cases:
+
+- option `serverUrl` was not passed to the constructor
+- `proxyIdOrURL` is an absolute URL
+
+In every other case `proxyIdOrURL` is treated as VG-proxy id.
+
 `onDone` is called when the player is ready to use.
 
 #### Arguments
@@ -175,7 +181,7 @@ Add audio file as a new audio track. Use in `player.load` callback.
 ```js
 player.load("PROXY_ID", function (err) {
     if (!err) {
-        player.loadAudioTrack("http://some.host.com/sometrack.m4a", 'FILENAME');
+        player.loadAudioTrack("http://some.host.com/sometrack.mpd", 'FILENAME');
     }
 });
 ```
@@ -204,7 +210,7 @@ String displayName, Array<String> channelNames
 ```js
 player.load("PROXY_ID", function (err) {
     if (!err) {
-        player.loadAudioTrack("FILENAME", ["Left", "Right"]);
+        player.addAudioTrack("FILENAME", ["Left", "Right"]);
     }
 });
 ```
@@ -227,7 +233,7 @@ String displayName, Array<String> channelNames
 ```js
 player.load("PROXY_ID", function (err) {
     if (!err) {
-        player.loadAudioTrackWithId("0128749164813674", "FILENAME", ["Left", "Right"]);
+        player.addAudioTrackWithId("0128749164813674", "FILENAME", ["Left", "Right"]);
     }
 });
 ```
@@ -292,7 +298,7 @@ var track = player.getAudioTrack("my_track_id_123");
 ### <a id="Player_addCaptions"></a>`Player.prototype.addCaptions(captions)`
 Add captions/subtitles track.
 #### Arguments
-1. `captions` *(Subtitles)*: parsed captions
+1. `captions` *(Subtitles)*: parsed captions. See [`Subtitles`](Subtitles.md)
 
 #### Example
 ```js
