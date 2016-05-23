@@ -19,7 +19,7 @@
 
 | Parameter | Desciption | Type | Default value |
 | --------- | ---------- | ---- | ------------- |
-| `imageFile` | File location on server FS for the image to display in the watermark | `String` | N/A |
+| `imageFile` | File name of the image to display in the watermark relative to server's watermark storage directory. | `String` | N/A |
 | `position`  | Watermark position. See description below for details.               | `Object` | *see details below* |
 
 ##  Watermark position object
@@ -57,7 +57,7 @@
     }
   },  
   image: {
-    imageFile: "/home/gagaga/VG-logo.png",
+    imageFile: "VG-logo.png",
     position: {
       vertical: {
         align: "top",
