@@ -10,7 +10,7 @@ Purpose: protect streamed media from unauthorized access.
 - `APP` - application backend
 - `Web page` - application frontend
 
-![](sessions.svg "General diagram")
+![](sessions.png "General diagram")
 
 1. User `U` logs into the application. APP creates user session `S`.
 2. User opens the page containing the player to play media item `M`. The page asks APP for a streaming session. APP checks user’s permissions.
