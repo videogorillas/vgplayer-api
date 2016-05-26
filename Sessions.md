@@ -157,6 +157,8 @@ NOTE: This request is made from the application server (APP).
 }
 ```
 
+---
+
 ### POST /api/1/sessions/cookie ###
 
 Get the session cookie. Response contains the cookie if the request is successfull. Cookie max-age is set according to session TTL.
@@ -179,6 +181,8 @@ NOTE: This request is made from the web page.
     id: "AbCdEfGh12345"
 }
 ```
+
+---
 
 ### POST /api/1/sessions/invalidate ###
 
