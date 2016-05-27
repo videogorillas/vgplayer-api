@@ -61,6 +61,7 @@
 ### Player Status Methods
 
 - [`isPlaying`](#Player_isPlaying)
+- [`getPlaybackRate`](#Player_getPlaybackRate)
 - [`getCurrentTime`](#Player_getCurrentTime)
 - [`getCurrentTimeValue`](#Player_getCurrentTimeValue)
 - [`getCurrentTapeTimecode`](#Player_getCurrentTapeTimecode)
@@ -721,7 +722,15 @@ player.setVideoQuality(Player.LOW_RES);
 Is player playing or paused (true/false).
 
 #### Returns
-*(Boolean)* : `true` - for playing, `false` otherwise;
+*(Boolean)* : `true` - for playing, `false` otherwise
+
+---
+
+### <a id="Player_getPlaybackRate"></a>`Player.prototype.getPlaybackRate()`
+Get current playback rate. Returns 0 if paused.
+
+#### Returns
+*(Number)* : current playback rate
 
 ---
 
