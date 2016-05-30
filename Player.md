@@ -28,6 +28,7 @@
 - [`getFilmStripDrawer`](#Player_getFilmStripDrawer)
 - [`getCaptionsList`](#Player_getCaptionsList)
 - [`getAudioTracks`](#Player_getAudioTracks)
+- [`registerPlugin`](#Player_registerPlugin)
 
 ### Playback Control Methods
 
@@ -447,6 +448,14 @@ Get List of Audio Tracks currently imported into the Player.
 
 #### Returns
 *(Array<PlayerAudioTrack>)*: List of PlayerAudioTrack objects
+
+---
+
+### <a id="Player_registerPlugin"></a>`Player.prototype.registerPlugin(plugin)`
+Register a plugin that uses an extended API for player manipulation and augmentation.
+
+#### Arguments
+1. `plugin` *(Object)*: plugin instance capable of accepting an injection of extended API object
 
 ---
 
