@@ -3,7 +3,9 @@
 ## Quick Start
 
 MP4 Container 
+
 H264 High Profile (no B frames please)
+
 AAC LC multiple audio tracks with multiple channels per track supported
 
 Encoders Rule of Thumb: your resulting video file must be playable at least in Chrome on a desktop computer, best if it plays in Safari, Firefox and IE (latest versions)
@@ -11,32 +13,47 @@ Encoders Rule of Thumb: your resulting video file must be playable at least in C
 ## Container
 
 MP4 
+
 https://en.wikipedia.org/wiki/MPEG-4_Part_14 
+
 Fast start option enabled (moov header at the beginning of the file) 
 
 ## <a id="GenericProxy_video"></a>Video
 
 One video track
+
 Resolution: preserve original resolution
+
 Display Aspect Ratio: preserve original
+
 Pixel Aspect Ratio: square pixel 1:1
 
-Example #1 (Full HD):
+#### Example #1 (Full HD):
+
 Original Display Aspect Ratio: 16:9
+
 Original Encoded resolution: 1920x1080
+
 Original Pixel Aspect Ratio: 1:1
 
 Output Display Aspect Ratio: 16:9
+
 Output Encoded resolution: 1920x1080
+
 Output Pixel Aspect Ratio: 1:1
 
-Example #2 (Anamorphic widescreen):
+#### Example #2 (Anamorphic widescreen):
+
 Original Display Aspect Ratio: 16:9
+
 Original Encoded resolution: 640x480
+
 Original Pixel Aspect Ratio: 4:3
 
 Output Display Aspect Ratio: 16:9
+
 Output Encoded resolution: 854x480
+
 Output Pixel Aspect Ratio: 1:1
 
 FPS: Preserve original
@@ -50,32 +67,47 @@ h264 Main or High Profile with no B-frames exception
 ![](h264profiles.jpg "H264 Profiles")
 
 Chroma format YUV420P only
+
 No interlaced encoding, please use deinterlacer (yadif or similar recommended)
+
 GOP size 5 seconds (120 for 24fps, 150 for 30fps)
 
 ## Bitrates
 
 Constant Quality set to 23 if x264 encoder used or similar visual quality setting
+
 Refer to http://slhck.info/articles/crf  
 
 Since bitrate values heavily depend on encoder used we do not specify suggested bit rates on purpose.
+
 Instead we recommend using Constant Quality
+
 In simple words it says to encoder: "i want the picture to look this good (X%), do whatever you need to achieve this goal", a VBR in a sense
 
 Consider the following example:
+
 You have 10 seconds of black frames followed by 10 seconds of action scene.
+
 If you encoded both at 5Mbps  it would be a waste of bandwidth for blacks and not enough bits for action scene.
+
 Another reason for not specifying the bitrate is to let client choose their own quality setting.
 
 ## <a id="GenericProxy_audio"></a>Audio
 
 AAC LC (low complexity) profile
+
 Several tracks supported
+
 Example:
+
 Track 1: 5.1 AAC audio Full mix English (US)
+
 Track 2: Stereo AAC audio Full mix Japanese
+
 Track 3: Mono AAC Dialogue
+
 Track 4: Mono AAC Effects
+
 All channels in all tracks should have appropriate channel labels (e.g. Left, Right, LFE, Right Surround, etc)
 
 ## Timecode
@@ -86,11 +118,15 @@ Timecode track if available in original but not required
 
 ## Quick Start
 
-video.mov - full res I-frame only h264 Main/High Profile GOP 1
-thumbhq.mov - low res 512x288 h264 Main/High no B-frames GOP 25
-thumbs.mov - super low res 144x80 h264 Baseline GOP 1
-audio.mp3 - 128k stereo downmix mp3 file, no metadata
-c00.wav - c99.wav - demuxed channels of uncompressed audio - on wav file per channel 
+`video.mov` - full res I-frame only h264 Main/High Profile GOP 1
+
+`thumbhq.mov` - low res 512x288 h264 Main/High no B-frames GOP 25
+
+`thumbs.mov` - super low res 144x80 h264 Baseline GOP 1
+
+`audio.mp3` - 128k stereo downmix mp3 file, no metadata
+
+`c00.wav` - `c99.wav` - demuxed channels of uncompressed audio - on wav file per channel 
 
 ## Video Full Res
 
@@ -101,105 +137,156 @@ Filename: `video.mov`
 ### Container
 
 MOV
+
 Fast start option enabled (moov header at the beginning of the file) 
+
 One video track
+
 No audio track
+
 Optional Timecode track 
+
 FPS: Preserve original
+
 Edit list: no edit list
 
 ### Resolution
 
-preserve original resolution
+Preserve original resolution
+
 Display Aspect Ratio: preserve original
+
 Pixel Aspect Ratio: square pixel 1:1
 
-Example #1 (Full HD):
+#### Example #1 (Full HD):
+
 Original Display Aspect Ratio: 16:9
+
 Original Encoded resolution: 1920x1080
+
 Original Pixel Aspect Ratio: 1:1
 
 Output Display Aspect Ratio: 16:9
+
 Output Encoded resolution: 1920x1080
+
 Output Pixel Aspect Ratio: 1:1
 
-Example #2 (Anamorphic widescreen):
+#### Example #2 (Anamorphic widescreen):
+
 Original Display Aspect Ratio: 16:9
+
 Original Encoded resolution: 640x480
+
 Original Pixel Aspect Ratio: 4:3
 
 Output Display Aspect Ratio: 16:9
+
 Output Encoded resolution: 854x480
+
 Output Pixel Aspect Ratio: 1:1
 
 ### Codec 
 
 h264 Main or High Profile with no B-frames exception
+
 Chroma format YUV420P only
+
 No interlaced encoding, please use deinterlacer (yadif or similar recommended)
+
 GOP size 1 (I-Frame only)
+
 Bitrate: Constant Quality set to 23 if x264 encoder used or similar visual quality setting
+
 Refer to http://slhck.info/articles/crf  
 
 ## <a id="VGProxyPro_LowResVideo"></a>Video Low Res
 
 
 Video track only low resolution video is needed to enable fast seeking within movie, often used instead of video.mov to decrease network bandwidth required. Required for low-res streaming (i.e. previews) Optimized for frame-precise seeking
+
 Filename: `thumbshq.mov`
 
 ### Container
 
 MOV
+
 Fast start option enabled (moov header at the beginning of the file) 
+
 One video track
+
 No audio track
+
 Optional Timecode track 
+
 FPS: Preserve original
+
 Edit list: no edit list
 
 ### Resolution
 
 512x288
+
 Display Aspect Ratio: preserve original
+
 Pixel Aspect Ratio: square pixel 1:1
 
 ### Codec
 
 h264 Main or High Profile with no B-frames exception
+
 Chroma format YUV420P only
+
 No interlaced encoding, please use deinterlacer (yadif or similar recommended)
+
 GOP size 25 
+
 Bitrate: Constant Quality set to 23 if x264 encoder used or similar visual quality setting
+
 Refer to http://slhck.info/articles/crf  
 
 ## <a id="VGProxyPro_Thumbnails"></a>Thumbnails
 
 Super low resolution video-only proxy needed to create UI previews of current movie and render filmstrip
+
 Filename: `thumbs.mov`
 
 ### Container
 
 MOV
+
 Fast start option enabled (moov header at the beginning of the file) 
+
 One video track
+
 No audio track
+
 No timecode track 
+
 FPS: Preserve original
+
 Edit list: no edit list
 
 ### Resolution
 
 144x80
+
 Display Aspect Ratio: preserve original
+
 Pixel Aspect Ratio: square pixel 1:1
 
 ### Codec
 
 h264 Baseline profile
+
 Chroma format YUV420P only
+
 No interlaced encoding, please use deinterlacer (yadif or similar recommended)
+
 GOP size 1 
+
 Bitrate: Constant Quality set to 23 if x264 encoder used or similar visual quality setting capped at 200kbit/sec
+
 Refer to http://slhck.info/articles/crf  
 
 ## Audio
@@ -207,24 +294,37 @@ Refer to http://slhck.info/articles/crf
 ### Stereo downmix
 
 An MP3 file containing all audio channels muxed into 16bit stereo. Optimized for quick random access during playback.
+
 Filename: `audio.mp3`
+
 Container: MP3
+
 Codec: MP3
+
 Channels: 2 channels
+
 Sample rate: 48khz
+
 Bitrate: 128kbps CBR
+
 Metadata: no metadata, no tags or other non-audio packets
+
 Encoder settings: no bit reservoir
 
 ### Separate channels
 
 One channel per file. Needed to enable the feature to mute/unmute individual audio channels during playback
+
 Filename: `c<channel_number>.wav` e.g. `c00.wav`
 
 Container: WAV (RF64 supported)
+
 Codec: Signed PCM
+
 Bit depth: preserve original (16bit preferred) 
+
 Sample rate: preserve original
+
 Metadata: Preserve original channel labels (e.g. Left, Right, LFE, Center etc)
 
 # DASH/HLS Proxy
