@@ -90,7 +90,7 @@ Options:
 - `skinless` *(Boolean)*: `true` for skinless mode (no controls at all), `false` for controls shown. Default is `false`
 - `search` *(Boolean)*: `true` enable search field for caption tracks. Default is `false`
 - `enableCORS` *(Boolean)*: `true` enable CORS requests for video elements. Default is `false`
-- `savePlaybackRate` *(Boolean)*: `true` never reset playback rate to 1x in [`play()`](#Player_play) and [`togglePlay()`](#Player_togglePlay), `false` reset rate to 1x. Default is `false`
+- `preservePlaybackRate` *(Boolean)*: `true` never reset playback rate to 1x in [`play()`](#Player_play) and [`togglePlay()`](#Player_togglePlay), `false` reset rate to 1x. Default is `false`
 
 #### Example
 
@@ -461,7 +461,7 @@ Register a plugin that uses an extended API for player manipulation and augmenta
 ---
 
 ### <a id="Player_play"></a>`Player.prototype.play()`
-Start playback. Playback rate is always set to 1x unless `savePlaybackRate` option is `true`.
+Start playback. Playback rate is always set to 1x unless `preservePlaybackRate` option is `true`.
 
 ---
 
@@ -513,7 +513,7 @@ Pause the player.
 ---
 
 ### <a id="Player_togglePlay"></a>`Player.prototype.togglePlay()`
-Either start or pause playback depending on the current play state. Playback rate is always set to 1x unless `savePlaybackRate` option is `true`.
+Either start or pause playback depending on the current play state. Playback rate is always set to 1x unless `preservePlaybackRate` option is `true`.
 
 ---
 
