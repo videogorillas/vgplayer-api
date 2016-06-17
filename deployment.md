@@ -100,10 +100,20 @@ cloud-0.1-uberjar.jar
   "serverurl": "http://zhuker.local:8042",
   "cloudjar": "/Users/zhukov/git/cloud2398/cloud-uberjar.jar",
   "drawtext_fontfile": "/Library/Fonts/Arial.ttf",
-  "fakem9k": true
+  "fakem9k": true,
+  "s3Enabled": "false",
+  "s3AccessKey": "ACCESS_KEY",
+  "s3SecretKey": "SECRET_KEY",
+  "s3LinksExpireTime": "1005000",
+  "s3Bucket": "coolbucket"
 }
 ```
 
+# S3 Enabled
+Worked for DASH stream. If option "s3Enabled" is enabled, files stores to s3 instead of local storage.
+Steps to activate s3 storage support:
+ - option s3Enabled in config file should be true
+ - add access, secret key and bucket in config file
 
 # Start Queue Manager
 
