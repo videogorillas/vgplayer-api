@@ -21,7 +21,7 @@ var mediaRequest = {
 
 var request = new XMLHttpRequest();
 
-request.open('POST', 'http://kote.videogorillas.com:8042/api/1/media');
+request.open('POST', 'http://vg.adapter.host:8042/api/2/media');
 
 request.setRequestHeader('Content-Type', 'application/json');
 
@@ -39,7 +39,7 @@ request.send(JSON.stringify(mediaRequest));
 
 Request
 ```
-POST /api/1/media
+POST /api/2/media
 
 Content-Type:application/json
 
@@ -107,7 +107,7 @@ var mediaId = "m4242"
 
 var request = new XMLHttpRequest();
 
-request.open('GET', 'http://kote.videogorillas.com:8042/api/1/media/get/'+mediaId);
+request.open('GET', 'http://vg.adapter.host:8042/api/2/media/get/'+mediaId);
 
 request.onreadystatechange = function () {
   if (this.readyState === 4) {
@@ -124,7 +124,7 @@ request.send();
 
 Request
 ```
-GET /api/1/media/get/${MEDIA_ID_HERE}
+GET /api/2/media/get/${MEDIA_ID_HERE}
 ```
 
 Response
@@ -132,16 +132,40 @@ Response
 {
   "type": "Media",
   "id": "m4",
-  "url": "http://server.com/path/to/video.mp4",
-  "hasThumbnail": false,
-  "commands": [ "nocache", "makehls1", "vgproxy", "makedash" ],
-  "commandParams": {"makedash": {"watermarktext": "hello world"}},
-  "makedashJobId": "v7",
-  "vgproxyJobId": "v4"
+  "hasThumbnail": true,
+  "commands": [
+    "vgproxy",
+    "makedash",
+    "makehls1"
+  ],
+  "commandParams": {
+    "makedash": {
+      "watermarktext": "hello world"
+    },
+    "makehls1": {
+      "watermarktext": "hello world"
+    },
+    "vgproxy": {
+      "watermarktext": "hello world"
+    }
+  },
+  "jobIds": {
+    "v30": "vgaudio",
+    "v32": "high23",
+    "v31": "makedash",
+    "v34": "makehls1",
+    "v33": "aacpassthru",
+    "v27": "iframes24",
+    "v26": "vgproxy",
+    "v29": "thumbs",
+    "v28": "thumbshq"
+  },
+  "filename": "maleficient.mp4",
+  "durationSec": 121.51
 }
 ```
 
-Note: **Job ids** for `makedash` and `vgproxy`  are `v7` and `v4`
+Note: **Job ids** for `makedash` and `vgproxy`  are `v31` and `v26`
 
 # Get Job Status
 
@@ -154,44 +178,47 @@ Response
 ```json
 {
   "type": "Job",
-  "id": "v5565",
-  "mediaId": "m2744",
+  "id": "v34",
+  "mediaId": "m4",
   "command": "makehls1",
-  "progress": 37,
-  "durationSec": 36.44,
+  "progress": 120,
+  "durationSec": 121.51,
+  "hasResult": false,
   "isFinished": true,
   "isStarted": false,
   "isBuried": false,
   "isCancelled": false,
-  "ctime": 1454949545112,
-  "finishedTime": 1454949556052,
-  "startedTime": 1454949545184,
+  "ctime": 1467279867904,
+  "finishedTime": 0,
+  "startedTime": 0,
   "buries": 0,
   "diffCount": 0,
   "diffMatch": 0.0,
-  "hlsDurationSec": 37,
+  "params": {
+    "watermarktext": "hello world"
+  },
   "resultUrls": [
-    "/api/1/storage/m2744/v5565/hls.m3u8",
-    "/api/1/storage/m2744/v5565/makehls1_inchunk_cq34114.js",
-    "/api/1/storage/m2744/v5565/hls00003.ts",
-    "/api/1/storage/m2744/v5565/hls00002.ts",
-    "/api/1/storage/m2744/v5565/hls00000.ts",
-    "/api/1/storage/m2744/v5565/hls00001.ts",
-    "/api/1/storage/m2744/v5565/hls00005.ts",
-    "/api/1/storage/m2744/v5565/hls00004.ts",
-    "/api/1/storage/m2744/v5565/hls00006.ts",
-    "/api/1/storage/m2744/v5565/hls00007.ts",
-    "/api/1/storage/m2744/v5565/cq34114.log"
+    "/api/1/storage/m4/v34/hls.m3u8"
   ],
-  "url": "https://www.dropbox.com/s/sdqg1a03vo2hggl/11043435_10152889047648640_3006656993036528196_o.jpg?dl=1"
+  "url": "http://server.com/path/to/video.mp4",
+  "linkedJobIds": [
+    "v32",
+    "v33",
+    "v28"
+  ],
+  "segmentsAvailable": false,
+  "segmentsReady": true
 }
 ```
 
-Note: HLS url for player is in **resultUrls** array `/api/1/storage/m2744/v5565/hls.m3u8`
+Note: HLS url for player is in **resultUrls** array `/api/1/storage/m4/v34/hls.m3u8`
 
 # Get Completed Chunks of a Job
 
 Available since version 0.2
+
+Note: Completed Chunks available only for **linkedJobIds** array
+Note: **linkedJobIds** for this example is `v32, v33, v28`
 
 Request
 ```
@@ -202,34 +229,44 @@ Response
 ```json
 [
   {
-    "id": "cq9608",
+    "_rev": 2,
+    "id": "c383",
     "command": "thumbshq",
-    "jobId": "v1161",
-    "mediaId": "m331",
+    "jobId": "v28",
+    "mediaId": "m4",
     "mseq": 0,
+    "status": "DONE",
     "startSec": 0.0,
-    "duration": 19.978708267211914,
-    "videoUrl": "/api/1/storage/m331/segments/v00_0000.mp4",
-    "workerId": "worker-42",
+    "duration": 6.00600004196167,
+    "videoUrl": "/api/1/storage/m4/segments/v00_0000.mov",
     "resultUrls": [
-      "http://zhuker.local:8042/api/1/storage/m331/v1161/thumbshq_cq9608.mp4"
-    ]
+      "http://vg.adapter.host:8042/api/1/storage/m4/v28/thumbshq_c383.mp4"
+    ],
+    "params": {
+      "watermarktext": "hello world"
+    },
+    "type": "Chunk"
   },
   {
-    "id": "cq9613",
+    "_rev": 2,
+    "id": "c388",
     "command": "thumbshq",
-    "jobId": "v1161",
-    "mediaId": "m331",
+    "jobId": "v28",
+    "mediaId": "m4",
     "mseq": 1,
-    "startSec": 19.97800064086914,
-    "duration": 3.96270751953125,
-    "videoUrl": "/api/1/storage/m331/segments/v00_0001.mp4",
-    "workerId": "worker-43",
+    "status": "DONE",
+    "startSec": 6.00600004196167,
+    "duration": 4.462791919708252,
+    "videoUrl": "/api/1/storage/m4/segments/v00_0001.mov",
     "resultUrls": [
-      "http://zhuker.local:8042/api/1/storage/m331/v1161/thumbshq_cq9613.mp4"
-    ]
+      "http://vg.adapter.host:8042/api/1/storage/m4/v28/thumbshq_c388.mp4"
+    ],
+    "params": {
+      "watermarktext": "hello world"
+    },
+    "type": "Chunk"
   }
-  ]
+]
   ```
 
 # WebSocket live update api
