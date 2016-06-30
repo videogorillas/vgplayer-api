@@ -217,7 +217,7 @@ Note: HLS url for player is in **resultUrls** array `/api/1/storage/m4/v34/hls.m
 
 Available since version 0.2
 
-Note: Completed Chunks available only for **linkedJobIds** array, **linkedJobIds** for this example is `v32, v33, v28`
+Note: Completed Chunks available only for **linkedJobIds** array, **linkedJobIds** for this example are `v32, v33, v28`
 
 Request
 ```
