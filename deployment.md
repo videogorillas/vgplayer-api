@@ -109,6 +109,55 @@ cloud-0.1-uberjar.jar
 }
 ```
 
+## Config FAQ
+
+Q: What is `"redisDb": 0`?
+
+A: Redis has a notion of multiple separate database instances within one redis process, this config setting tells webserver to use specific redis db number
+
+Q: What is `keystorePath` supposed to point to?
+
+A: Only needed if you want web server to take care of SSL
+
+Q: What is supposed to install `convert`
+
+A: 
+
+Q: Where does youtubedl come from?
+
+A: For testing purposes only, you may disregard/delete this setting from `config.json` file
+
+Q: What is `drawtext_fontfile` used for, where does it come from on a Ubuntu machine?
+
+A: This is the path to TTF file to render on demand watermark. 
+
+On Ubuntu fonts come in separate packages. We recommend using Liberation font family if you want a simple sans serif font.
+
+Install package with 
+
+```
+sudo apt-get install fonts-liberation
+```
+
+And Configure 
+```
+drawtext_fontfile=/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf
+```
+
+Q: What is fakem9k?
+
+A: Disregard this config option, it is used for testing VG neural network object recognition framework.
+
+Q: What are the persistence expectations of any of the ${x}Dir locations?
+
+A: `watermarkStorageDir` - your watermark image logos are stored here, so this one should be persistent
+
+`prodStorageDir` - worker results can be uploaded to S3 or to this storage dir, when you don't need a perticular media you can delete  `prodStorageDir/$MEDIAID` folder
+
+`workerStorageDir` - workers keep their temporary files here, after worker node is done with a chunk this folder can be safely deleted.
+
+
+
 # S3 Enabled
 Worked for DASH stream. If option "s3Enabled" is enabled, files stores to s3 instead of local storage.
 Steps to activate s3 storage support:
