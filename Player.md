@@ -9,7 +9,6 @@
 
 - [`load`](#Player_load)
 - [`loadUrl`](#Player_loadUrl)
-- [`loadAudioProxy`](#Player_loadAudioProxy)
 - [`loadAudioTrack`](#Player_loadAudioTrack)
 - [`close`](#Player_close)
 - [`addAudioTrack`](#Player_addAudioTrack)
@@ -157,24 +156,6 @@ player.loadUrl("http://some.host.com/path/something.mpd", function(err) {
 
 ---
 
-### <a id="Player_loadAudioProxy"></a>`Player.prototype.loadAudioProxy(serverUrl, proxyId, [fileName])`
-Load audio proxy to the current video proxy. Use in `player.load` callback.
-#### Arguments
-1. `serverUrl` *(String)*: the url of audioproxy server
-2. `proxyId` *(String)*: ID of the audioproxy
-3. `fileName` *(String)*: optional display name to show
-
-#### Example
-```js
-player.load("PROXY_ID", function (err) {
-    if (!err) {
-        player.loadAudioProxy("SERVER_URL", "AUDIOPROXY_ID", 'FILENAME');
-    }
-});
-```
-
----
-
 ### <a id="Player_loadAudioTrack"></a>`Player.prototype.loadAudioTrack(url, [fileName])`
 Add audio file as a new audio track. Use in `player.load` callback.
 #### Arguments
@@ -246,7 +227,7 @@ player.load("PROXY_ID", function (err) {
 
 ### <a id="Player_audioAddHandler"></a>`Player.prototype.audioAddHandler(callback)`
 Show "add audio track" button in the player UI. `callback` function is called on click.
-Use in `player.load` callback with `player.loadAudioProxy` or `player.loadAudioTrack` to add new audio track.
+Use in `player.load` callback with `player.loadAudioTrack` to add new audio track.
 #### Arguments
 1. `callback` *(Function)*: event handler
 
@@ -256,7 +237,7 @@ player.load("PROXY_ID", function (err) {
     if (!err) {
         player.audioAddHandler(function (e) {
             /*any additional code*/
-            player.loadAudioProxy("SERVER_URL", "AUDIOPROXY_ID", "FILENAME");
+            player.loadAudioTrack("URL", "TRACK_NAME", callback);
         });
     }
 });
