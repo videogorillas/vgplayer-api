@@ -121,7 +121,7 @@ A: Only needed if you want web server to take care of SSL
 
 Q: What is supposed to install `convert`
 
-A: 
+A: `convert` is a part of `imagemagick` package it should be installed on worker nodes
 
 Q: Where does youtubedl come from?
 
