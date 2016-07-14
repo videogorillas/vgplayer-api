@@ -56,10 +56,13 @@ Assume each chunk is 125 frames (5 seconds long, 25 frames/sec). Calculated fram
 6. `onDone` *(Function)*: success callback
 7. `onError` *(Function)*: error callback
 
+#### Returns
+*(Function)*: cancellation function. Call it to abort filmstrip drawing.
+
 #### Example
 
 ```js
-drawer.drawFilmstrip(canvas, 10000, 27000, 5, true,
-            function() { console.log("done drawing filmstrip"); },
-            function(err) { console.error(err); });
+var abortFunc = drawer.drawFilmstrip(canvas, 10000, 27000, 5, true,
+                    function() { console.log("done drawing filmstrip"); },
+                    function(err) { console.error(err); });
 ```
