@@ -124,6 +124,8 @@ Timecode track if available in original but not required
 
 `thumbs.mov` - super low res 144x80 h264 Baseline GOP 1
 
+`audio.js` - JSON file, audio metadata
+
 `audio.mp3` - 128k stereo downmix mp3 file, no metadata
 
 `c00.wav` - `c99.wav` - demuxed channels of uncompressed audio - on wav file per channel 
@@ -290,6 +292,33 @@ Bitrate: Constant Quality set to 23 if x264 encoder used or similar visual quali
 Refer to http://slhck.info/articles/crf  
 
 ## Audio
+
+### Audio metadata
+
+JSON file containing audio metadata.
+
+Filename: `audio.js`
+
+Example
+```json
+{
+  "audioType": "wavs",
+  "channelCount": 2,
+  "sampleRate": 48000,
+  "totalSamples": 309477169,
+  "channelLabels": ["front left", "front right"]
+}
+````
+
+`audioType` - `"wavs"` for separate .wav per channel, `"mp3"` for stereo downmix
+
+`channelCount` - number of channels. 2 for stereo, etc
+
+`sampleRate` - audio sample rate
+
+`totalSamples` - total number of audio samples in a single channel. For example 2 seconds at 48000Hz comprise 96000 samples
+
+`channelLabels` - channel labels
 
 ### Stereo downmix
 
