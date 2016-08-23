@@ -192,3 +192,20 @@ Get time in milliseconds corresponding to time value in `tv`.
 
 ---
 
+### <a id="Timeline_getDurationSec"></a>`Timeline.prototype.getDurationSec()`
+Get total duration of the video.
+
+#### Returns
+*(Number)*: time in seconds
+
+---
+
+### <a id="Timeline_getSeekableDurationSec"></a>`Timeline.prototype.getSeekableDurationSec()`
+Get duration which is seekable via `player.seekSec` 
+
+#### Returns
+*(Number)*: time in seconds
+
+---
+
+
