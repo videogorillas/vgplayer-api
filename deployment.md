@@ -157,7 +157,7 @@ A: `watermarkStorageDir` - your watermark image logos are stored here, so this o
 `workerStorageDir` - workers keep their temporary files here, after worker node is done with a chunk this folder can be safely deleted.
 
 Q: In what unit are s3linksexpiretime?
-A: In seconds.
+A: In seconds. Please note, this value should be less than 7 days (604800)
 
 
 # S3 Enabled
