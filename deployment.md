@@ -1,3 +1,17 @@
+
+# Package contents
+
+1.`cloud-1234-uberjar.jar` file.
+ 
+This is `VGPlayer Adapter` application package. Version "1234".
+
+It implements such services:
+   - Queue Manager Service
+   - Dispatcher Service
+   - HTTP Live Streaming (HLS) Service
+
+
+
 # Workflow Overview
 
 Media url is submitted to Queue Manager via a RESTful API.
