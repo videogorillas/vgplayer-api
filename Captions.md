@@ -52,9 +52,6 @@ Offsets subtitles by specified time value
 2. `offsetTv` *(Integer)*: timevalue to offset by
 3. `timeline` *([`Timeline`](Timeline.md))*: [`Player Timeline`](Player.md#Player_getTimeline) object to align subtitles to
 
-#### Returns
-*([`Subtitles`](#Subtitles))*: offset subtitles object
-
 #### Example
 ```js
 var codec = Captions.guessSubtitleCodec("http://server/url/to/subs.srt");
@@ -62,7 +59,8 @@ var codec = Captions.guessSubtitleCodec("http://server/url/to/subs.srt");
 Captions.parseSubs(player.getTimeline(), "http://server/url/to/subs.srt", codec, function(err, subs) {
     if (err) return console.error("error parsing subs", err);
 
-    subs = Captions.offsetCaptions(subs, 42042, player.getTimeline());
+    Captions.offsetCaptions(subs, 42042, player.getTimeline());
+    console.log("subs are offset by 42042", subs);
 });
 ```
 
