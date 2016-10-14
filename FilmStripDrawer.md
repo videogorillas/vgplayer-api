@@ -29,15 +29,15 @@ Frame precise mode explanation:
 
 Assume each chunk is 125 frames (5 seconds long, 25 frames/sec). Calculated frame numbers would be:
 
-*framePrecise=true*:
-`drawFilmstrip(canvas, 100, 270, 5, true)`
+*framePrecise=true*: `drawFilmstrip(canvas, 100, 270, 5, true)`
 
 | #100 | #134 | #168 | #203 | #270 |
 |------|------|------|------|------|
 
-*framePrecise=false*: the first frames of respective video chunks or nearest I-frames are rendered. `startFrame` and `endFrame` are exception.
+*framePrecise=false*: `drawFilmstrip(canvas, 100, 600, 5, true)`
+
+The first frames of respective video chunks or nearest I-frames are rendered. `startFrame` and `endFrame` are exception.
 This mode is generally faster because fewer frames are to be decoded.
-`drawFilmstrip(canvas, 100, 600, 5, true)`
 
 | #100 | #125 | #250 | #375 | #600 |
 |------|------|------|------|------|
