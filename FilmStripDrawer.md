@@ -35,7 +35,8 @@ Assume each chunk is 125 frames (5 seconds long, 25 frames/sec). Calculated fram
 | #100 | #134 | #168 | #203 | #270 |
 |------|------|------|------|------|
 
-*framePrecise=false*: the first frames of respective video chunks are used. `startFrame` and `endFrame` are exception.
+*framePrecise=false*: the first frames of respective video chunks or nearest I-frames are rendered. `startFrame` and `endFrame` are exception.
+This mode is generally faster because fewer frames are to be decoded.
 `drawFilmstrip(canvas, 100, 600, 5, true)`
 
 | #100 | #125 | #250 | #375 | #600 |
@@ -46,6 +47,20 @@ Assume each chunk is 125 frames (5 seconds long, 25 frames/sec). Calculated fram
 
 | #100 | **#125** | **#125** | **#125** | #270 |
 |------|----------|----------|----------|------|
+
+`numberOfFrames` explanation:
+
+Drawer does not care whether the canvas is too wide or too narrow to fit all the frames.
+
+Lets assume `canvasElement` is wide enough to fit 10.5 frames.
+
+If `numberOfFrames` is 3: drawer will draw exactly 3 frames and will leave the right part of the canvas intact.
+
+If `numberOfFrames` is 20: drawer will try draw exactly 20 frames. Half of the frames will not fit into the canvas.
+The rightmost visible frame will not be `endFrame`.
+
+In general use case if `canvasElement` can fit 10.5 frames pass 11 in `numberOfFrames`.
+In this case the last frame will be `endFrame` and it will be half-visible.
 
 #### Arguments
 1. `canvasElement` *(HTML Element)*: html canvas element to draw on
