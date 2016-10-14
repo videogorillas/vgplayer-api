@@ -25,7 +25,7 @@ drawer.getInfo();
 ### <a id="#FilmStripDrawer_drawFilmstrip"></a>`FilmStripDrawer.prototype.drawFilmstrip(canvasElement, startFrame, endFrame, numberOfFrames, framePrecise, onDone, onError)`
 Draw the filmstrip on the canvas element.
 
-Frame precise mode explanation:
+#### Frame precise mode explanation:
 
 Assume each chunk is 125 frames (5 seconds long, 25 frames/sec). Calculated frame numbers would be:
 
@@ -50,7 +50,7 @@ This mode is generally faster because fewer frames are to be decoded.
 | #100 | **#125** | **#125** | **#125** | #270 |
 |------|----------|----------|----------|------|
 
-`numberOfFrames` explanation:
+#### `numberOfFrames` explanation:
 
 Drawer does not care whether the canvas is too wide or too narrow to fit all the frames.
 
