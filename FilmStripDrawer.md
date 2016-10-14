@@ -31,6 +31,8 @@ Assume each chunk is 125 frames (5 seconds long, 25 frames/sec). Calculated fram
 
 *framePrecise=true*: `drawFilmstrip(canvas, 100, 270, 5, true)`
 
+This is how the filmstrip will look:
+
 | #100 | #134 | #168 | #203 | #270 |
 |------|------|------|------|------|
 
