@@ -23,7 +23,7 @@ drawer.getInfo();
 ---
 
 ### <a id="#FilmStripDrawer_drawFilmstrip"></a>`FilmStripDrawer.prototype.drawFilmstrip(canvasElement, startFrame, endFrame, numberOfFrames, framePrecise, onDone, onError)`
-Draw the filmstrip on the canvas element.
+Draw the filmstrip on the canvas element. If some frame can not be rendered for any reason black frame is rendered instead.
 
 #### Frame precise mode explanation:
 
@@ -59,7 +59,7 @@ Lets assume `canvasElement` is wide enough to fit 10.5 frames.
 If `numberOfFrames` is 3: drawer will draw exactly 3 frames and will leave the right part of the canvas intact.
 
 If `numberOfFrames` is 20: drawer will try draw exactly 20 frames. Half of the frames will not fit into the canvas.
-The rightmost visible frame will not be `endFrame`.
+The rightmost visible frame will be not `endFrame`.
 
 In general use case if `canvasElement` can fit 10.5 frames pass 11 in `numberOfFrames`.
 In this case the last frame will be `endFrame` and it will be half-visible.
