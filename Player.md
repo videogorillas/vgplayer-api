@@ -15,6 +15,7 @@
 - [`addAudioTrackWithId`](#Player_addAudioTrackWithId)
 - [`audioAddHandler`](#Player_audioAddHandler)
 - [`setAudioTrackUrl`](#Player_setAudioTrackUrl)
+- [`setAudioTrackOffset`](#Player_setAudioTrackOffset)
 - [`getAudioTrack`](#Player_getAudioTrack)
 - [`addCaptions`](#Player_addCaptions)
 - [`addCaptionsHandler`](#Player_addCaptionsHandler)
@@ -156,17 +157,25 @@ player.loadUrl("http://some.host.com/path/something.mpd", function(err) {
 
 ---
 
-### <a id="Player_loadAudioTrack"></a>`Player.prototype.loadAudioTrack(url, [fileName])`
+### <a id="Player_loadAudioTrack"></a>`Player.prototype.loadAudioTrack(url, displayName, onDone)`
 Add audio file as a new audio track. Use in `player.load` callback.
+
 #### Arguments
 1. `url` *(String)*: the url of audio file
-2. `fileName` *(String)*: optional display name to show
+2. `displayName` *(String)*: display name to show
+3. `onDone` *(Function)*: callback function to execute when the track is loaded, takes one argument `error`
 
 #### Example
 ```js
 player.load("PROXY_ID", function (err) {
     if (!err) {
-        player.loadAudioTrack("http://some.host.com/sometrack.mpd", 'FILENAME');
+        player.loadAudioTrack("http://some.host.com/sometrack.mpd", "TRACK_NAME", function(error) {
+            if (error) {
+                console.log("track not loaded", error);
+            } else {
+                console.log("track loaded");
+            }
+        });
     }
 });
 ```
@@ -259,6 +268,31 @@ player.load("PROXY_ID", function (err) {
         var trackId = player.addAudioTrack("mytrack", ["Left", "Right"]);
         /* wait for adapter to transcode the audio and give us trackUrl */
         player.setAudioTrackUrl(trackId, trackUrl)
+    }
+});
+```
+
+---
+
+### <a id="Player_setAudioTrackOffset"></a>`Player.prototype.setAudioTrackOffset(trackId, offset)`
+Offset audio track by `offset` seconds.
+
+Constraints:
+- `offset` must be >= 0
+- track must not be current track
+- track must be successfully loaded
+
+#### Arguments
+1. `trackId` *(String)*: track id
+2. `offset` *(Number)*: offset in seconds
+
+#### Example
+```js
+var url = "http://some.host.com/sometrack.mpd";
+player.loadAudioTrack(url, "TRACK_NAME", function(error) {
+    if (!error) {
+        player.setAudioTrackOffset(url, 12.3);
+        player.setCurrentAudioTrack(url);
     }
 });
 ```
