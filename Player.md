@@ -15,7 +15,7 @@
 - [`addAudioTrackWithId`](#Player_addAudioTrackWithId)
 - [`audioAddHandler`](#Player_audioAddHandler)
 - [`setAudioTrackUrl`](#Player_setAudioTrackUrl)
-- [`setAudioTrackOffset`](#Player_setAudioTrackOffset)
+- [`conformAudioTrack`](#Player_conformAudioTrack)
 - [`getAudioTrack`](#Player_getAudioTrack)
 - [`addCaptions`](#Player_addCaptions)
 - [`addCaptionsHandler`](#Player_addCaptionsHandler)
@@ -274,10 +274,11 @@ player.load("PROXY_ID", function (err) {
 
 ---
 
-### <a id="Player_setAudioTrackOffset"></a>`Player.prototype.setAudioTrackOffset(trackId, offset)`
-Offset audio track by `offset` seconds.
+### <a id="Player_conformAudioTrack"></a>`Player.prototype.conformAudioTrack(trackId, offset)`
+Offset audio track by `offset` seconds. Audio track duration is set to the video track duration
+if the audio track after offset is still shorter than the video track.
 
-Constraints:
+Limitations:
 - `offset` must be >= 0
 - track must not be current track
 - track must be successfully loaded
@@ -291,7 +292,7 @@ Constraints:
 var url = "http://some.host.com/sometrack.mpd";
 player.loadAudioTrack(url, "TRACK_NAME", function(error) {
     if (!error) {
-        player.setAudioTrackOffset(url, 12.3);
+        player.conformAudioTrack(url, 12.3);
         player.setCurrentAudioTrack(url);
     }
 });
