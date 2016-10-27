@@ -276,7 +276,7 @@ player.load("PROXY_ID", function (err) {
 
 ### <a id="Player_conformAudioTrack"></a>`Player.prototype.conformAudioTrack(trackId, offset)`
 Offset audio track by `offset` seconds. Audio track duration is set to the video track duration
-if the audio track after offset is still shorter than the video track.
+if the audio track after offsetting is still shorter than the video track.
 
 Limitations:
 - `offset` must be >= 0
