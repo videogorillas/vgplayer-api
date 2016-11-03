@@ -98,6 +98,10 @@ Note: **Media id** is `m4`
 
 "detectscenes" - detect scenes in all channels of media and make it available via api
 
+# Watermarking Params
+
+For detailed info on watermarking parameters see [`Watermark.md`](Watermark.md)
+
 # Get Media Status
 
 
