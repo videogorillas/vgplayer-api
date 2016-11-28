@@ -20,7 +20,7 @@ This repository contains VG Player public API documentation.
 
     window.onload = function() {
       var playerContainer = document.getElementById("playerContainer");
-      var options = { hotkeys: true, theme = VG_THEME };
+      var options = { hotkeys: true, theme = "vg" };
       var player = new VG.Player(playerContainer, options);
 
       player.load("http://server/to/video.mp4", function() {
