@@ -171,6 +171,38 @@ Response
 
 Note: **Job ids** for `makedash` and `vgproxy`  are `v31` and `v26`
 
+# Remove Media Data Files
+
+
+```js
+
+var mediaId = "m4242"
+
+var request = new XMLHttpRequest();
+
+request.open('GET', 'http://vg.adapter.host:8042/api/2/media/removedata/'+mediaId);
+
+request.onreadystatechange = function () {
+  if (this.readyState === 4) {
+    console.log('Status:', this.status);
+    console.log('Headers:', this.getAllResponseHeaders());
+  }
+};
+
+request.send();
+```
+
+Request
+```
+GET /api/2/media/removedata/${MEDIA_ID_HERE}
+```
+
+Response
+
+HTTP status code 200.
+
+Note: only audio and video files are removed. Logs, metadata and Redis records are not affected by the call.
+
 # Get Job Status
 
 Request
