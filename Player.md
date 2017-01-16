@@ -734,13 +734,13 @@ Mute all channels in the audio track.
 ---
 
 ### <a id="Player_setVideoQuality"></a>`Player.prototype.setVideoQuality(quality)`
-Switch between hi and low resolution video streams. Use constants `Player.FULL_RES` and `Player.LOW_RES`.
+Switch between hi and low resolution video streams. Use strings `"fullres"` and `"lowres"`.
 #### Arguments
 1. `quality` *(String)*: quality type
 
 #### Example
 ```js
-player.setVideoQuality(Player.LOW_RES);
+player.setVideoQuality("lowres");
 ```
 
 ---
