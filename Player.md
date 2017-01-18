@@ -91,6 +91,7 @@ Options:
 - `search` *(Boolean)*: `true` enable search field for caption tracks. Default is `false`
 - `enableCORS` *(Boolean)*: `true` enable CORS requests for video elements. Default is `false`
 - `preservePlaybackRate` *(Boolean)*: `true` never reset playback rate to 1x in [`play()`](#Player_play) and [`togglePlay()`](#Player_togglePlay), `false` reset rate to 1x. Default is `false`
+- `allowCrossSiteCredentials` *(Boolean)*: `true` send cookies in cross-domain requests. Default is `false`
 
 #### Example
 
