@@ -24,7 +24,6 @@
 - [`getTapeTimecode`](#Timeline_getTapeTimecode)
 - [`getDurationSec`](#Timeline_getDurationSec)
 - [`getSeekableDurationSec`](#Timeline_getSeekableDurationSec)
-- [`setSeekableDurationSec`](#Timeline_setSeekableDurationSec)
 
 ## _Timeline Instance Methods_ ##
 
