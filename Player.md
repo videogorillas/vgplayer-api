@@ -183,7 +183,7 @@ player.load("PROXY_ID", function (err) {
 ---
 
 ### <a id="Player_close"></a>`Player.prototype.close()`
-Close the video and clear player view.
+Close the video and clear player view. Also remove all event listeners added with [`addEventListener`](#Player_addEventListener).
 
 ---
 
