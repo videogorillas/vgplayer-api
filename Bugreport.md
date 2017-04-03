@@ -1,11 +1,10 @@
 # Reporting an issue with VGPlayer
 
-## `Into` ##
+## `Intro` ##
 In order to attack the issue we all need to be on the same page and have clear steps to reproduce the issue.
 
 ## `Example` ##
-1. playerA with playerOptions Foo{} got created
-2. load media with ID1 using load() call
-3. add media ID2 into playerA
-4. got "some errors" but expecting bla
-
+1. Version of the player
+2. PlayerOptions which are used to initialize player
+3. Code example describing how to load media into initialized player and reproduce the issue
+4. Add screenshots if they are necessary
