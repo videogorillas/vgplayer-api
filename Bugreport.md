@@ -1,4 +1,4 @@
-# Reporting an issue with VGPlayer
+# Reporting bug
 
 ## `Intro` ##
 In order to attack the issue we all need to be on the same page and have clear steps to reproduce the issue.
