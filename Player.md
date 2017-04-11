@@ -171,11 +171,13 @@ Add audio file as a new audio track. Use in `player.load` callback.
 ```js
 player.load("PROXY_ID", function (err) {
     if (!err) {
-        player.loadAudioTrack("http://some.host.com/sometrack.mpd", "TRACK_NAME", function(error) {
+        var url = "http://some.host.com/sometrack.mpd";
+        player.loadAudioTrack(url, "TRACK_NAME", function(error) {
             if (error) {
                 console.log("track not loaded", error);
             } else {
                 console.log("track loaded");
+                player.setCurrentAudioTrack(url);
             }
         });
     }
