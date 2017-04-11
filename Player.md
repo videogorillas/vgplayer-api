@@ -160,7 +160,7 @@ player.loadUrl("http://some.host.com/path/something.mpd", function(err) {
 ---
 
 ### <a id="Player_loadAudioTrack"></a>`Player.prototype.loadAudioTrack(url, displayName, onDone)`
-Add audio file as a new audio track. Use in `player.load` callback. File can be mpeg-dash descriptor or mp4. If the file contains several audio tracks only the first one in will be loaded.
+Add audio file as a new audio track. Use in `player.load` callback. File can be mpeg-dash descriptor or mp4. If the file contains several audio tracks only the first one will be loaded.
 
 #### Arguments
 1. `url` *(String)*: the url of audio file
