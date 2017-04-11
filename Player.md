@@ -400,7 +400,7 @@ Supported event types:
 - `play` playback state. Boolean value is passed to the handler: `true` when playback has been started, `false` when paused.
 - `timeline` timeline updates. [`Timeline`](Timeline.md) instance is passed to the handler. Fired on duration change.
 - `error` player errors. Exception instance is passed to the handler.
-- `progress` player loads more of the media file. `TimeRanges` object is passed to the handler.
+- `progress` player loads more of the media file. Array of [`TimeRange`](#Player_getBuffered_TimeRange) objects is passed to the handler.
 
 #### Arguments
 1. `type` *(String)*: event type
@@ -913,7 +913,7 @@ Returns true if individual audio channels can be muted.
 ### <a id="Player_getBuffered"></a>`Player.prototype.getBuffered()`
 Returns array of `TimeRange` objects that contains info about which portions of media have been buffered.
 
-`TimeRange` object consists of:
+<a id="Player_getBuffered_TimeRange"></a>`TimeRange` object consists of:
 - `start` *(Number)* - time in seconds for the start of the range
 - `end` *(Number)* - time in seconds for the end of the range
 
