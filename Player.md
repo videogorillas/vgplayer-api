@@ -911,11 +911,11 @@ Returns true if individual audio channels can be muted.
 ---
 
 ### <a id="Player_getBuffered"></a>`Player.prototype.getBuffered()`
-Returns `TimeRanges` object that contains info about which portions of media have been buffered.
+Returns array of `TimeRange` objects that contains info about which portions of media have been buffered.
 
-`TimeRanges.length` - number of ranges 
-
-`TimeRanges.start(index)`, `TimeRanges.end(index)` - returns the time in seconds for the start/end of the range with the specified index.
+`TimeRange` object consists of:
+- `start` *(Number)* - time in seconds for the start of the range
+- `end` *(Number)* - time in seconds for the end of the range
 
 #### Returns
-*(TimeRanges)* : `TimeRanges` instance
+*(Array\<TimeRange>)* : array of `TimeRange` objects
