@@ -73,6 +73,7 @@
 - [`getSeekableDurationSec`](#Player_getSeekableDurationSec)
 - [`getTimeline`](#Player_getTimeline)
 - [`isAudioMutable`](#Player_isAudioMutable)
+- [`getBuffered`](#Player_getBuffered)
 
 
 ## _Player Constructor_ ##
@@ -397,6 +398,7 @@ Supported event types:
 - `play` playback state. Boolean value is passed to the handler: `true` when playback has been started, `false` when paused.
 - `timeline` timeline updates. [`Timeline`](Timeline.md) instance is passed to the handler. Fired on duration change.
 - `error` player errors. Exception instance is passed to the handler.
+- `progress` player loads more of the media file. `TimeRanges` object is passed to the handler.
 
 #### Arguments
 1. `type` *(String)*: event type
@@ -903,3 +905,15 @@ Returns true if individual audio channels can be muted.
 
 #### Returns
 *(Boolean)* : `true` - individual audio channels can be muted, `false` otherwise;
+
+---
+
+### <a id="Player_getBuffered"></a>`Player.prototype.getBuffered()`
+Returns `TimeRanges` object that contains info about which portions of media have been buffered.
+
+`TimeRanges.length` - number of ranges 
+
+`TimeRanges.start(index)`, `TimeRanges.end(index)` - returns the time in seconds for the start/end of the range with the specified index.
+
+#### Returns
+*(TimeRanges)* : `TimeRanges` instance
