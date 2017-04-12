@@ -83,7 +83,7 @@ Constructs new Player object.
 
 #### Arguments
 1. `container` *(HTML Element)*: The container element where the player is to be created.
-2. `options` *(Map)*: options map.
+2. `options` *(Object)*: options map.
 
 Options:
 - `hotkeys` *(Boolean)*: - enable standard Player hotkeys. See [Hotkeys](hotkeys.md). Default is `false`
@@ -93,6 +93,14 @@ Options:
 - `enableCORS` *(Boolean)*: `true` enable CORS requests for video elements. Default is `false`
 - `preservePlaybackRate` *(Boolean)*: `true` never reset playback rate to 1x in [`play()`](#Player_play) and [`togglePlay()`](#Player_togglePlay), `false` reset rate to 1x. Default is `false`
 - `allowCrossSiteCredentials` *(Boolean)*: `true` send cookies in cross-domain requests. Default is `false`
+- `drm` *(Object)*: DRM options
+
+DRM Options:
+- `widevine` *(Object)*: widevine specific options
+- `playready` *(Object)*: playready specific options
+
+Specific DRM options:
+- `laUrl` *(String)*: license acquisition url
 
 #### Example
 
@@ -100,9 +108,16 @@ The follow example shows the basic usage of a Player.
 
 ```js
     var container = document.getElementById("playerContainer");
-    var options = {hotkeys: true,
-                   serverUrl: "http://some.server.com:4242/"}
-    var player = new Player(container, options);
+    var options = {
+        hotkeys: true,
+        serverUrl: "http://some.server.com:4242/",
+        drm: {
+            widevine: {
+                laUrl: "http://widevine-proxy.appspot.com/proxy"
+            }
+        }
+    };
+    var player = new VG.Player(container, options);
 ```
 
 * * *
