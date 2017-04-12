@@ -104,7 +104,7 @@ Specific DRM options:
 
 #### Example
 
-The follow example shows the basic usage of a Player.
+The following example shows the basic usage of the player.
 
 ```js
     var container = document.getElementById("playerContainer");
