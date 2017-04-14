@@ -485,7 +485,7 @@ Get List of Captions and Subtitles currently imported into the Player.
 Get List of Audio Tracks currently imported into the Player.
 
 #### Returns
-*(Array<PlayerAudioTrack>)*: List of PlayerAudioTrack objects
+*(Array<PlayerAudioTrack>)*: List of [`PlayerAudioTrack`](PlayerAudioTrack.md) objects
 
 ---
 
