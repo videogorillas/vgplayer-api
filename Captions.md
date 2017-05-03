@@ -25,7 +25,14 @@ Captions.guessSubtitleCodec("http://server/url/to/subs.srt");
 ```
  
 ### <a id="parseSubs"></a>`Captions.parseSubs(timeline, url, codec, callback)`
-Downloads and parses subtitles given a url
+Downloads and parses subtitles given a url.
+
+List of subtitle and closed caption formats currently supported by the player:
+* DLP Cinema (Cinecanvas 1.1 XML, UTF-8/16)
+* EBU (STL)
+* Cavena 890
+* Web VTT
+
 #### Arguments
 1. `timeline` *([`Timeline`](Timeline.md))*: [`Player Timeline`](Player.md#Player_getTimeline) object to align subtitles to
 2. `url` *(String)*: url to subtitles
