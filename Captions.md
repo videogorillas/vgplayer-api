@@ -24,7 +24,7 @@ Captions.guessSubtitleCodec("http://server/url/to/subs.srt");
 // => "srt"
 ```
  
-### <a id="parseSubs"></a>`Captions.parseSubs(timeline, url, codec, callback)`
+### <a id="parseSubs"></a>`Captions.parseSubs(timeline, url, codec, callback, [logLevel])`
 Downloads and parses subtitles given a url.
 
 List of subtitle and closed caption formats currently supported by the player:
@@ -38,6 +38,7 @@ List of subtitle and closed caption formats currently supported by the player:
 2. `url` *(String)*: url to subtitles
 3. `codec` *(String)*: subtitle type. Available codecs: `srt`, `webvtt`, `stl`, `c890`, `dcsubs`
 4. `callback` *(Function)*: callback function to execute when the subtitles are parsed
+5. `logLevel` *([`LogLevel`](LogLevel.md))*: *optional* logging level, see [`LogLevel`](LogLevel.md)
 
 #### Example
 ```js

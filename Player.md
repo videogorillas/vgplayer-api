@@ -29,6 +29,7 @@
 - [`getCaptionsList`](#Player_getCaptionsList)
 - [`getAudioTracks`](#Player_getAudioTracks)
 - [`registerPlugin`](#Player_registerPlugin)
+- [`setLogLevel`](#Player_setLogLevel)
 
 ### Playback Control Methods
 
@@ -94,6 +95,7 @@ Options:
 - `preservePlaybackRate` *(Boolean)*: `true` never reset playback rate to 1x in [`play()`](#Player_play) and [`togglePlay()`](#Player_togglePlay), `false` reset rate to 1x. Default is `false`
 - `allowCrossSiteCredentials` *(Boolean)*: `true` send cookies in cross-domain requests. Default is `false`
 - `drm` *(Object)*: DRM options
+- `logLevel` *([`LogLevel`](LogLevel.md))*: logging level. See [`LogLevel`](LogLevel.md). Default is `INFO`
 
 DRM Options:
 - `widevine` *(Object)*: widevine specific options
@@ -494,6 +496,14 @@ Register a plugin that uses an extended API for player manipulation and augmenta
 
 #### Arguments
 1. `plugin` *(Object)*: plugin instance capable of accepting an injection of extended API object
+
+---
+
+### <a id="Player_setLogLevel"></a>`Player.prototype.setLogLevel(logLevel)`
+Set logging level.
+
+#### Arguments
+1. `logLevel` *([`LogLevel`](LogLevel.md))*: logging level. See [`LogLevel`](LogLevel.md)
 
 ---
 
