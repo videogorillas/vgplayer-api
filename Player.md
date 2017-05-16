@@ -102,7 +102,10 @@ DRM Options:
 - `playready` *(Object)*: playready specific options
 - `fairplay` *(Object)*: fairplay specific options
 
-Specific DRM options:
+Widevine/Playready specific options:
+- `laUrl` *(String)*: license acquisition url
+
+Fairplay specific options:
 - `laUrl` *(String)*: license acquisition url
 - `certUrl` *(String)*: fairplay certificate url
 
