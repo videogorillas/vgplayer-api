@@ -100,9 +100,11 @@ Options:
 DRM Options:
 - `widevine` *(Object)*: widevine specific options
 - `playready` *(Object)*: playready specific options
+- `fairplay` *(Object)*: fairplay specific options
 
 Specific DRM options:
 - `laUrl` *(String)*: license acquisition url
+- `certUrl` *(String)*: fairplay certificate url
 
 #### Example
 
