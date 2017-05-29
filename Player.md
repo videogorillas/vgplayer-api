@@ -19,7 +19,6 @@
 - [`getAudioTrack`](#Player_getAudioTrack)
 - [`addCaptions`](#Player_addCaptions)
 - [`addCaptionsHandler`](#Player_addCaptionsHandler)
-- [`captionsError`](#Player_captionsError)
 - [`disableHotKeys`](#Player_disableHotKeys)
 - [`enableHotKeys`](#Player_enableHotKeys)
 - [`setStartTapeTimecode`](#Player_setStartTapeTimecode)
@@ -369,18 +368,6 @@ player.load("PROXY_ID", function (err) {
         });
     }
 });
-```
-
----
-
-### <a id="Player_captionsError"></a>`Player.prototype.captionsError(message)`
-Show error message. Use it to tell the user that captions could not be loaded.
-#### Arguments
-1. `message` *(String)*: error message
-
-#### Example
-```js
-player.captionsError("Failed to load captions from http://host.com/path/caps01.xml");
 ```
 
 ---
