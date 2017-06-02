@@ -72,7 +72,7 @@ or like this
 |00000|11111|22222|33333|...
           ^
 ```
-In both cases you will to see frame #1 on the screen.
+In both cases you will see frame #1 on the screen.
 
 Never try to seek very close to frame end like on example below.
 Minimum time remaining to the next frame *start time* should NOT be less than **0.001** seconds.
