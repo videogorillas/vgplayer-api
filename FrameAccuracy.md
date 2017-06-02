@@ -15,7 +15,7 @@ The player has 3 different levels of frame accurate operation. See appropriate s
 The player relies on built-in browser media playback engine.
 Obviously browser is optimized for typical usage scenarios.
 Unfortunately accurate seeking is not what most users really need for watching kittens videos on youtube.
-So browsers are NOT optimized for that kind of usage.
+So browsers are NOT optimized for precise seeking.
 
 Correct seeking to arbitrary time depends on browser implementation.
 Sometimes it is impossible. Here are some examples:
