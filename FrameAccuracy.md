@@ -4,7 +4,7 @@ See [Browser Limitations](#FrameAccuracy_browser) for general info on video play
 
 Section [Frame Accuracy](#FrameAccuracy_explained) explains what is frame accuracy in detail.
 
-Section [Frame Accuracy Levels](#FrameAccuracy_levels) describes preconditions for frame accuracy.
+Section [Frame Accuracy Preconditions](#FrameAccuracy_preconditions) describes preconditions for frame accuracy.
 
 ## <a id="FrameAccuracy_browser"></a> Browser Limitations
 
@@ -100,7 +100,7 @@ It reports the video is positioned clearly within frame #1 duration BUT you see 
 That is why you often see player goes back 1 frame after it pauses playback.
 
 
-## <a id="FrameAccuracy_levels"></a> Frame Accuracy Levels
+## <a id="FrameAccuracy_preconditions"></a> Frame Accuracy Preconditions
 
 The player has 3 different levels of frame accurate operation. See appropriate sections:
 
