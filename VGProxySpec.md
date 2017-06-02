@@ -60,7 +60,7 @@ FPS: Preserve original
 
 Edit list: no edit list
 
-## Codec
+## <a id="GenericProxy_Codec"></a> Codec
 
 h264 Main or High Profile with no B-frames exception
 
