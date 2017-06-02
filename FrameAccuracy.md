@@ -1,4 +1,4 @@
-# Frame Accuracy and seeking behavior
+# Frame accuracy and seeking behavior
 
 See [Browser Limitations](#FrameAccuracy_browser) for general info on video playback in web browsers.
 
