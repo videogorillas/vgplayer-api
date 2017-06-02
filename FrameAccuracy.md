@@ -1,15 +1,107 @@
 # Frame Accuracy and seeking behavior
 
-Note: Timeline calculation is any calculation involving frame numbers or timecodes.
+See [Browser limitations](#FrameAccuracy_browser) for general info on video playback in web browsers.
 
-Note: correct seeking to arbitrary time expressed in seconds depends on browser implementation.
-For example having B-frames in video stream will break any seeking accuracy for sure.
+Section [Frame Accuracy](#FrameAccuracy_explained) explains what is frame accuracy in detail.
 
-The player has 3 different levels of frame accurate operation.
+The player has 3 different levels of frame accurate operation. See appropriate sections:
 
 - [frame accurate playback/seeking guaranteed](#FrameAccuracy_accurate)
 - [frame accurate timeline calculations guaranteed](#FrameAccuracy_timeline)
 - [frame accuracy is NOT guaranteed](#FrameAccuracy_generic)
+
+## <a id="FrameAccuracy_browser"></a> Browser limitations
+
+The player relies on built-in browser media playback engine.
+Obviously browser is optimized for typical usage scenarios.
+Unfortunately accurate seeking is not what most users really need for watching kittens videos on youtube.
+So browsers are NOT optimized for that kind of usage.
+
+Correct seeking to arbitrary time depends on browser implementation.
+Sometimes it is impossible. Here are some examples:
+
+- having B-frames in video stream will break any seeking accuracy for sure
+- it is often impossible to seek to the last few frames. However you can reach them by playing the video to the end
+
+
+## <a id="FrameAccuracy_explained"></a> Frame Accuracy
+
+Note: Timeline calculation is any calculation involving frame numbers or timecodes.
+
+What is frame accurate seeking/playback?
+
+- ability to seek video to frame #12345 and see exactly frame #12345 on your screen
+- ability to see a frame on the screen and know for sure it is frame #12345
+
+The player implements a number of _hacks_ to address both points.
+That is why you should always rely on [Timeline](Player.md#Player_getTimeline) class for timeline calculations.
+
+This is a timeline scheme:
+```
+ vvvvv
+|00000|11111|22222|33333|...  ---> time
+ ^
+```
+- `|` - frame boundary
+- `1` - frame number in particular moment of time
+- `^` - current playback position reported by browser
+- `vvvvv` - the frame you see on the screen
+
+Each frame has *start time* and *duration*. *Start time* plus *duration* is the *start time* of the next frame.
+If all frame durations are equal we call it constant frame rate.
+
+### Seeking to arbitrary frame number or timecode
+
+When you ask the player to seek to a frame number (i.e. call `seekFrame()`) it tries to seek close to frame *start time*:
+```
+       vvvvv
+|00000|11111|22222|33333|...
+       ^
+```
+
+### Seeking to arbitrary time
+
+If you want to seek to arbitrary time expressed in seconds with `seekSec()` here are some tips.
+
+
+Seeking to frame #1 can be like this:
+```
+       vvvvv
+|00000|11111|22222|33333|...
+       ^
+```
+or like this
+```
+       vvvvv
+|00000|11111|22222|33333|...
+          ^
+```
+In both cases you will to see frame #1 on the screen.
+
+Never try to seek very close to frame end like on example below.
+Minimum time remaining to the next frame boundary should NOT be less than **0.001** seconds.
+```
+|00000|11111|22222|33333|...
+           ^
+```
+Else you will end up with this:
+```
+             vvvvv
+|00000|11111|22222|33333|...
+           ^
+```
+
+### Pausing
+
+When you press pause or call `pause()` browser can behave like this:
+```
+             vvvvv
+|00000|11111|22222|33333|...
+         ^
+```
+It reports the video is positioned within frame #1 duration BUT you see frame #2 rendered on the screen.
+That is why you often see player goes back 1 frame after it pauses playback.
+
 
 ## <a id="FrameAccuracy_accurate"></a> Frame accurate playback
 
