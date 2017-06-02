@@ -42,7 +42,7 @@ This is a timeline scheme:
 |00000|11111|22222|33333|...  ---> time
  ^
 ```
-- `|` - frame boundary
+- `|` - frame *start time*
 - `1` - frame number in particular moment of time
 - `^` - current playback position reported by browser
 - `vvvvv` - the frame you see on the screen
@@ -79,7 +79,7 @@ or like this
 In both cases you will to see frame #1 on the screen.
 
 Never try to seek very close to frame end like on example below.
-Minimum time remaining to the next frame boundary should NOT be less than **0.001** seconds.
+Minimum time remaining to the next frame *start time* should NOT be less than **0.001** seconds.
 ```
 |00000|11111|22222|33333|...
            ^
