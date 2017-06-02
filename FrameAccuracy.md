@@ -139,7 +139,7 @@ Timeline calculations will be correct if ALL of these conditions are met:
 ### <a id="FrameAccuracy_generic"></a> No guarantees. Default/Generic playback
 
 If timeline accuracy can not be guaranteed the player uses fallback loading method.
-In that case you will see `loadGeneric()` in the console. HLS always loads this way.
+In that case you will see **"loadGeneric()"** in the console. HLS always loads this way.
 
 Limitations of the method:
 
