@@ -74,6 +74,7 @@
 - [`getTimeline`](#Player_getTimeline)
 - [`isAudioMutable`](#Player_isAudioMutable)
 - [`getBuffered`](#Player_getBuffered)
+- [`isLive`](#Player_isLive)
 
 
 ## _Player Constructor_ ##
@@ -936,3 +937,12 @@ Returns array of `TimeRange` objects that contains info about which portions of 
 
 #### Returns
 *(Array\<TimeRange>)* : array of `TimeRange` objects
+
+---
+
+### <a id="Player_isLive"></a>`Player.prototype.isLive()`
+Returns `true` if video track is live OR currently selected audio track is live.
+Note: only HLS or MPEG-DASH can be live.
+
+#### Returns
+*(Boolean)* : `true` - live stream is open
