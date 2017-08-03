@@ -24,6 +24,8 @@
 - [`getTapeTimecode`](#Timeline_getTapeTimecode)
 - [`getDurationSec`](#Timeline_getDurationSec)
 - [`getSeekableDurationSec`](#Timeline_getSeekableDurationSec)
+- [`getStartUTCTimestamp`](#Timeline_getStartUTCTimestamp)
+- [`getUTCTimestampBySec`](#Timeline_getUTCTimestampBySec)
 
 ## _Timeline Instance Methods_ ##
 
@@ -207,4 +209,33 @@ Get duration which is seekable via `player.seekSec`
 
 ---
 
+### <a id="Timeline_getStartUTCTimestamp"></a>`Timeline.prototype.getStartUTCTimestamp()`
+Get start UTC timestamp. I.e. timestamp of frame #0.
 
+#### Returns
+*(String)*: start timestamp as ISO 8601 string
+
+#### Example
+
+```js
+timeline.getStartUTCTimestamp()
+// => "2017-03-01T13:01:02.003Z"
+```
+
+---
+
+### <a id="Timeline_getUTCTimestampBySec"></a>`Timeline.prototype.getUTCTimestampBySec(seconds)`
+Get UTC timestamp corresponding to time in `seconds`.
+
+#### Arguments
+1. `seconds` *(Number)*: time in seconds
+
+#### Returns
+*(String)*: timestamp as ISO 8601 string
+
+#### Example
+
+```js
+timeline.getUTCTimestampBySec(300.73)
+// => "2017-03-01T13:01:02.003Z"
+```

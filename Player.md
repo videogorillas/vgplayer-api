@@ -22,6 +22,7 @@
 - [`disableHotKeys`](#Player_disableHotKeys)
 - [`enableHotKeys`](#Player_enableHotKeys)
 - [`setStartTapeTimecode`](#Player_setStartTapeTimecode)
+- [`setStartUTCTimestamp`](#Player_setStartUTCTimestamp)
 - [`addEventListener`](#Player_addEventListener)
 - [`removeEventListener`](#Player_removeEventListener)
 - [`getFilmStripDrawer`](#Player_getFilmStripDrawer)
@@ -43,6 +44,7 @@
 - [`seek`](#Player_seek)
 - [`seekFrame`](#Player_seekFrame)
 - [`seekSec`](#Player_seekSec)
+- [`seekUTCTimestamp`](#Player_seekUTCTimestamp)
 - [`nextFrame`](#Player_nextFrame)
 - [`previousFrame`](#Player_previousFrame)
 - [`nextSec`](#Player_nextSec)
@@ -68,9 +70,12 @@
 - [`getCurrentTapeTimecode`](#Player_getCurrentTapeTimecode)
 - [`getCurrentStandardTimecode`](#Player_getCurrentStandardTimecode)
 - [`getCurrentFrame`](#Player_getCurrentFrame)
+- [`getCurrentUTCTimestamp`](#Player_getCurrentUTCTimestamp)
 - [`getTimeSample`](#Player_getTimeSample)
 - [`getDurationSec`](#Player_getDurationSec)
 - [`getSeekableDurationSec`](#Player_getSeekableDurationSec)
+- [`getStartTapeTimecode`](#Player_getStartTapeTimecode)
+- [`getStartUTCTimestamp`](#Player_getStartUTCTimestamp)
 - [`getTimeline`](#Player_getTimeline)
 - [`isAudioMutable`](#Player_isAudioMutable)
 - [`getBuffered`](#Player_getBuffered)
@@ -384,7 +389,7 @@ Enable hot keys handling.
 ---
 
 ### <a id="Player_setStartTapeTimecode"></a>`Player.prototype.setStartTapeTimecode(timecode)`
-Set start tape timecode. New timecode overrides start timecode obtained from video stream.
+Set start tape timecode. I.e. timecode of frame #0. New timecode overrides start timecode obtained from video stream.
 Use in `player.load` callback.
 #### Arguments
 1. `timecode` *(String)*: start tape timecode
@@ -394,6 +399,23 @@ Use in `player.load` callback.
 player.load("PROXY_ID", function (err) {
     if (!err) {
         player.setStartTapeTimecode("01:00:00:00");
+    }
+});
+```
+
+---
+
+### <a id="Player_setStartUTCTimestamp"></a>`Player.prototype.setStartUTCTimestamp(timestamp)`
+Set start UTC timestamp. I.e. timestamp of frame #0. New timestamp overrides start timestamp obtained from media.
+Use in `player.load` callback.
+#### Arguments
+1. `timestamp` *(String)*: start UTC timestamp as ISO 8601 string
+
+#### Example
+```js
+player.load("some url", function (err) {
+    if (!err) {
+        player.setStartUTCTimestamp("2017-03-01T13:01:02.003Z");
     }
 });
 ```
@@ -612,6 +634,19 @@ Jump to a specific time.
 #### Example
 ```js
 player.seekSec(300.043);
+```
+
+---
+
+### <a id="Player_seekUTCTimestamp"></a>`Player.prototype.seekUTCTimestamp(timestamp)`
+Jump to a specific UTC timestamp expressed as ISO 8601 string.
+
+#### Arguments
+1. `timestamp` *(String)*: ISO 8601 string timestamp
+
+#### Example
+```js
+player.seekUTCTimestamp("2017-03-01T13:01:02.003Z");
 ```
 
 ---
@@ -862,6 +897,21 @@ player.getCurrentFrame()
 
 ---
 
+### <a id="Player_getCurrentUTCTimestamp"></a>`Player.prototype.getCurrentUTCTimestamp()`
+Get current player position as UTC timestamp in ISO 8601 format.
+
+#### Returns
+*(String)*: current position as UTC timestamp
+
+#### Example
+
+```js
+player.getCurrentUTCTimestamp()
+// => "2017-03-01T13:01:02.003Z"
+```
+
+---
+
 
 ### <a id="Player_getTimeSample"></a>`Player.prototype.getTimeSample()`
 Get current player position as `TimeSample` object containing time value, seconds and frame number.
@@ -908,6 +958,36 @@ player.getDurationSec()
 // => 230.0234
 player.getSeekableDurationSec()
 // => 30
+```
+
+---
+
+### <a id="Player_getStartTapeTimecode"></a>`Player.prototype.getStartTapeTimecode()`
+Get start tape timecode. I.e. tape timecode of frame #0.
+
+#### Returns
+*(String)*: start tape timecode
+
+#### Example
+
+```js
+player.getStartTapeTimecode()
+// => "00:57:30:00"
+```
+
+---
+
+### <a id="Player_getStartUTCTimestamp"></a>`Player.prototype.getStartUTCTimestamp()`
+Get start UTC timestamp. I.e. timestamp of frame #0.
+
+#### Returns
+*(String)*: start timestamp as ISO 8601 string
+
+#### Example
+
+```js
+player.getStartUTCTimestamp()
+// => "2017-03-01T13:01:02.003Z"
 ```
 
 ---
