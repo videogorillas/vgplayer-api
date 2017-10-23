@@ -27,28 +27,33 @@ Draw the filmstrip on the canvas element. If some frame can not be rendered for 
 
 #### Frame precise mode explanation:
 
-Assume each chunk is 125 frames (5 seconds long, 25 frames/sec). Calculated frame numbers would be:
+Assume each chunk is 125 frames (5 seconds long, 25 frames/sec). So each 25th frame is an I-frame. Calculated frame numbers would be:
 
 *framePrecise=true*: `drawFilmstrip(canvas, 100, 270, 5, true)`
 
 This is how the filmstrip will look:
 
-| #100 | #134 | #168 | #203 | #270 |
+| #100 | #143 | #185 | #228 | #270 |
 |------|------|------|------|------|
 
-*framePrecise=false*: `drawFilmstrip(canvas, 100, 600, 5, true)`
+*framePrecise=false*: `drawFilmstrip(canvas, 100, 270, 5, false)`
 
 The first frames of respective video chunks or nearest I-frames are rendered. `startFrame` and `endFrame` are exception.
 This mode is generally faster because fewer frames are to be decoded.
 
-| #100 | #125 | #250 | #375 | #600 |
+| #100 | #125 | #175 | #225 | #270 |
 |------|------|------|------|------|
 
-*framePrecise* flag is ignored if some frames are to be duplicated (frame #125 in the example). The filmstrip will be rendered in frame precise mode.
-`drawFilmstrip(canvas, 100, 270, 5, false)`
+*framePrecise* flag is ignored if some frames are to be duplicated. We could have filmstrip rendered as this:
+`drawFilmstrip(canvas, 100, 150, 5, false)`
 
-| #100 | **#125** | **#125** | **#125** | #270 |
+| #100 | **#100** | **#125** | **#125** | #150 |
 |------|----------|----------|----------|------|
+
+But instead the filmstrip will be rendered as if *framePrecise=true*:
+
+| #100 | #113 | #125 | #138 | #150 |
+|------|------|------|------|------|
 
 #### `numberOfFrames` explanation:
 
