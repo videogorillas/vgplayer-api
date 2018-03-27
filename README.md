@@ -41,7 +41,7 @@ Download require http://requirejs.org/docs/download.html#requirejs
 ```
 <script src="lib/require.js"></script>
 <script>
-    var VG = requirejs(['lib/vgplayer-web.js'], function (VG) {
+    requirejs(['lib/vgplayer-web.js'], function (VG) {
         window.PlayerImpl()
     });
 </script>
