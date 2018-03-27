@@ -32,3 +32,17 @@ This repository contains VG Player public API documentation.
 </html>
 
 ```
+
+
+# Require.js
+
+Download require http://requirejs.org/docs/download.html#requirejs
+
+```
+<script src="lib/require.js"></script>
+<script>
+    var VG = requirejs(['lib/vgplayer-web.js'], function (VG) {
+        window.PlayerImpl()
+    });
+</script>
+```
