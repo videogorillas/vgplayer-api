@@ -42,7 +42,10 @@ Download require http://requirejs.org/docs/download.html#requirejs
 <script src="lib/require.js"></script>
 <script>
     requirejs(['lib/vgplayer-web.js'], function (VG) {
-        window.PlayerImpl()
-    });
+        const container = document.getElementById("playerContainer");
+        const options = {
+            hotkeys: true,
+        };
+        player = new window.PlayerImpl(container, options);
 </script>
 ```
