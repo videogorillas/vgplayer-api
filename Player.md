@@ -100,6 +100,8 @@ Options:
 - `preservePlaybackRate` *(Boolean)*: `true` never reset playback rate to 1x in [`play()`](#Player_play) and [`togglePlay()`](#Player_togglePlay), `false` reset rate to 1x. Default is `false`
 - `allowCrossSiteCredentials` *(Boolean)*: `true` send cookies in cross-domain requests. Default is `false`
 - `drm` *(Object)*: DRM options
+- `useUTCTimestamp` *(Boolean)*: use UTC timestamp instead of timecodes. Used for live streams playback. Default is `false`
+- `proPanel` *(Boolean)*: show Pro Panel. Default is `false`
 - `logLevel` *([`LogLevel`](LogLevel.md))*: logging level. See [`LogLevel`](LogLevel.md). Default is `INFO`
 
 DRM Options:
