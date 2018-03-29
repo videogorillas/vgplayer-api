@@ -2,6 +2,10 @@
 
 This repository contains VG Player public API documentation.
 
+https://videogorillas.com/player
+
+![screenshot](screenshot.jpg "VG Player screenshot")
+
 # Sample Page
 
 ```html
