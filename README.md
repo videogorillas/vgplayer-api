@@ -20,16 +20,17 @@ This repository contains VG Player public API documentation.
 
     window.onload = function() {
       var playerContainer = document.getElementById("playerContainer");
-      var options = { hotkeys: true, theme: "vg" };
-      var player = new VG.Player(playerContainer, options);
+      var options = { hotkeys: true, theme: "vg", plugins: ["filmstrip"] };
+      player = new VG.Player(playerContainer, options);
 
-      player.load("http://server/to/video.mp4", function() {
+      player.load("http://kote.videogorillas.com/vmir/always-dynamic-tong/file.mpd", function() {
           console.log("player Loaded");
       });
     };
 </script>
 </body>
 </html>
+
 
 ```
 
