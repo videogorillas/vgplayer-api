@@ -101,7 +101,6 @@ Options:
 - `allowCrossSiteCredentials` *(Boolean)*: `true` send cookies in cross-domain requests. Default is `false`
 - `drm` *(Object)*: DRM options
 - `useUTCTimestamp` *(Boolean)*: use UTC timestamp instead of timecodes. Used for live streams playback. Default is `false`
-- `proPanel` *(Boolean)*: show Pro Panel. Default is `false`
 - `logLevel` *([`LogLevel`](LogLevel.md))*: logging level. See [`LogLevel`](LogLevel.md). Default is `INFO`
 
 DRM Options:
