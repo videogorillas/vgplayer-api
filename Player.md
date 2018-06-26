@@ -429,7 +429,7 @@ Use in `player.load` callback.
 Supported event types:
 - `fullscreen` player enters/exits full screen mode. Boolean status is passed to the handler.
 - `timeupdate` playback position changes. `TimeSample` object is passed to the handler.
-- `load` player is ready, media is loaded. Can be added right after Player instance creation.
+- `load` player is ready, media is loaded. Can be added right after Player instance creation. Player instance is passed to the handler.
 - `play` playback state. Boolean value is passed to the handler: `true` when playback has been started, `false` when paused.
 - `timeline` timeline updates. [`Timeline`](Timeline.md) instance is passed to the handler. Fired on duration change.
 - `error` player errors. Exception instance is passed to the handler.
