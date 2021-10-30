@@ -32,6 +32,7 @@ List of subtitle and closed caption formats currently supported by the player:
 * EBU (STL)
 * Cavena 890
 * Web VTT
+* TTML
 
 #### Arguments
 1. `timeline` *([`Timeline`](Timeline.md))*: [`Player Timeline`](Player.md#Player_getTimeline) object to align subtitles to
@@ -39,6 +40,7 @@ List of subtitle and closed caption formats currently supported by the player:
 3. `codec` *(String)*: subtitle type. Available codecs: `srt`, `webvtt`, `stl`, `c890`, `dcsubs`
 4. `callback` *(Function)*: callback function to execute when the subtitles are parsed
 5. `logLevel` *([`LogLevel`](LogLevel.md))*: *optional* logging level, see [`LogLevel`](LogLevel.md)
+6. `excludeLastFrame` *(Boolean)*: *optional* parameter to exclude last frame for each subtitle, supported by TTML parser only!
 
 #### Example
 ```js
@@ -51,6 +53,18 @@ Captions.parseSubs(player.getTimeline(), "http://server/url/to/subs.srt", codec,
 
     console.log("subs parsed", subs);
 });
+```
+
+```js
+var codec = Captions.guessSubtitleCodec("http://server/url/to/subs.srt");
+Captions.parseSubs(player.getTimeline(), "http://server/url/to/subs.srt", codec, function(err, subs) {
+    if (err) {
+        console.error("error parsing subs", err);
+        return;
+    }
+
+    console.log("subs parsed", subs);
+}, VG.LogLevel.INFO, false);
 ```
 
 ### <a id="offsetCaptions"></a>`Captions.offsetCaptions(captions, offsetTv, timeline)`
